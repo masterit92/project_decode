@@ -1,0 +1,69 @@
+<?php
+$aryData = $this->aryData;
+?>
+<div class="left col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <form>
+        <quote><?php echo __('Please fill in your details') ?></quote>
+        <div class="col-md-6 left-left col-sm-12 col-xs-12 ">
+            <label><?php echo __('First Name') ?></label>
+            <input type="text"/>
+            <label><?php echo __('Contact No') ?></label>
+            <input type="text"/>
+            <label><?php echo __('Gender') ?></label>
+            <select>
+                <option value="0" selected><?php echo __('-----Please select-----') ?></option>
+                <option value="1"><?php echo __('Male'); ?></option>
+                <option value="2"><?php echo __('Female'); ?></option>
+
+            </select>
+        </div>
+        <div class="col-md-6 left-right col-sm-12 col-xs-12">
+
+            <label><?php echo __('Last Name') ?></label>
+            <input type="text"/>
+            <label><?php echo __('Email Address') ?></label>
+            <input type="text"/>
+            <label><?php echo __('Participants(2-5)') ?></label>
+            <select id="num-player">
+                <option value="0" selected><?php echo __('-----Please select-----') ?></option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <input type="submit" value="SUBMIT"/>
+        </div>
+        <div style="display: none">
+            <input type="hidden" name="game_id" value="<?php echo $aryData['gameId']; ?>">
+            <input type="hidden" name="time" value="<?php echo $aryData['time'] ?>"/>
+            <input type="hidden" name="date" value="<?php echo $aryData['day'] ?>"/>
+        </div>
+    </form>
+</div>
+<div class="right col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="info">
+        <h4><?php echo __('SUMMARY') ?></h4>
+        <ul>
+            <li><span><?php echo __('Game: ') ?><em id="bf_sum_game_name"></em></span>
+            <li>
+            <li><span><?php echo __('Date: ') . $aryData['day'] ?></span>
+            <li>
+            <li><span><?php echo __('Time: ') . $aryData['time'] ?></span>
+            <li>
+            <li><span><?php echo __('Participant: ') ?><em id="bf_num_player"></em></span>
+            <li>
+            <li><span><?php echo __("Total price: ") ?></span>
+            <li>
+        </ul>
+        <i><?php echo __("*Please arive 10 mins before you booking time") ?></i>
+    </div>
+
+</div>
+<script type="text/javascript" language="JavaScript">
+    jQuery(document).ready(function ($) {
+        $('#bf_sum_game_name').text($('#td-game-name').text());
+        $('#num-player').on('change', function () {
+            $('#bf_num_player').text($(this).val());
+        });
+    });
+</script>

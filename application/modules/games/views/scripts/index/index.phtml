@@ -1,0 +1,8 @@
+<?php $options_game_rule = $this->options_game_rule ?>
+<?php if(count($options_game_rule)>0):?>
+<h3><?php echo $options_game_rule['option_name']?></h3>
+<p>
+    <?php echo $options_game_rule['option_value']?>
+</p>
+<span class="note"><i><?php echo __('For more info:')?> <a href="<?php echo $this->baseUrl('faqs')?>"><?php echo __('check faqs')?></a></i></span>
+<?php endif;?>

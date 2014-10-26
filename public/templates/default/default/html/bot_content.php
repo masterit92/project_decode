@@ -29,9 +29,7 @@
     <?php elseif ($this->class_body === 'the-game'): ?>
         <ul class="inline">
             <?php
-            $games = new Admin_Model_Games();
-            $gamesCollection = $games->getAllGames();
-            foreach ($gamesCollection as $game):
+            foreach ($this->listgame as $game):
                 $game_image = $game['game_image'];
                 $arr_image = explode('|', $game_image);
                 ?>
@@ -40,7 +38,7 @@
                     <a href="<?php echo $this->baseUrl('bookings') ?>" class="item-game">
                         <?php if (Check_File_Exists_Upload($img)): ?>
                                 <img src="<?php echo $this->baseUrl(UPLOAD_URL . $img) ?>" width="250px" height="350px"
-                                     alt="<?php echo $game['game_name']; ?>"/>
+                                     alt="<?php echo $game['game_name']; ?>" title="<?php echo $game['game_desc']?>"/>
                         <?php else: ?>
                             <img src="<?php echo $this->baseUrl(UPLOAD_URL . 'no_img.jpg') ?>" width="250px" height="350px"/>
                         <?php endif; ?>
@@ -52,24 +50,18 @@
         </ul>
     <?php
     elseif ($this->class_body === 'booking'): ?>
-        <?php
-        $bizPrices = new Bookings_Model_Biz_PricesBusiness();
-        $prices = $bizPrices->getPrices();
-        ?>
         <div class="bot-booking">
             <div class="center">
                 <span class="price">PRICE</span>
                 <ul class="col-md-12">
-                    <?php foreach ($prices as $_price): ?>
-
-                        <li class="col-md-4 col-md-12">
-                            <p><?php echo __($_price['price_name']) ?></p>
-
-                            <p><?php echo $_price['price_value'] ?> VND</p>
-                        </li>
-                    <?php endforeach; ?>
+                    <?php foreach ($this->list_price as $price):?>
+                    <li class="col-md-4 col-md-12">
+                        <p><?php echo $price['price_name']?> : <?php echo $price['price_desc']?></p>
+                        <p><?php echo $price['price_value']?> VND</p>
+                    </li>
+                    <?php endforeach;?>
                 </ul>
-                <p>* Off-peak (Before 17:00)</p>
+                <p></p>
             </div>
         </div>
     <?php

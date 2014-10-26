@@ -14,14 +14,13 @@
                     <?php if (count($this->options_logo) > 0): ?>
                         <?php $logo = $this->options_logo ?>
                         <?php if (Check_File_Exists_Upload($logo['option_image'])): ?>
-                            <img src="<?php echo $this->baseUrl(UPLOAD_URL . $logo['option_image']) ?>" title="<?php echo $logo['option_value'] ?>"/>
+                            <img width="225" height="81" src="<?php echo $this->baseUrl(UPLOAD_URL . $logo['option_image']) ?>" title="<?php echo $logo['option_value'] ?>"/>
                         <?php else: ?>
-                            <img src="<?php echo $this->baseUrl(UPLOAD_URL . 'no_img.jpg') ?>" title="<?php echo $logo['option_value'] ?>" />
+                            <img width="225" height="81" src="<?php echo $this->baseUrl(UPLOAD_URL . 'no_img.jpg') ?>" title="<?php echo $logo['option_value'] ?>" />
                         <?php endif; ?>
                     <?php endif; ?>
                 </a>
             </h1>
-
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

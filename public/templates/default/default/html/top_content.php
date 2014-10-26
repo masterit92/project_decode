@@ -3,7 +3,7 @@
     <?php if ($this->class_body === 'faq' || $this->class_body === 'contact'): ?>
         <div class="booking-now">
         </div>
-        <a href="<?php echo $this->baseUrl('bookings/index/bookings') ?>" class="book-now">Book Now</a>
+        <a href="<?php echo $this->baseUrl('bookings') ?>" class="book-now">Book Now</a>
     <?php endif; ?>
 
     <?php if ($this->class_body === 'the-game' || $this->class_body === 'booking' || $this->class_body === 'faq' || $this->class_body === 'contact' || $this->class_body === 'booking-detail'): ?>

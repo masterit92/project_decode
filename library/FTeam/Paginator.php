@@ -10,7 +10,7 @@ class FTeam_Paginator{
 		$paginator->setItemCountPerPage($arrPaginator['itemCountPerPage']);		
 		$paginator->setPageRange($arrPaginator['pageRange']);
 		$paginator->setCurrentPageNumber($arrPaginator['currentPage']);
-		
+                $paginator->setCacheEnabled(0);
 		return $paginator;
 	}
 }

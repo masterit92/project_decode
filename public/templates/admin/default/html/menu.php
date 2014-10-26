@@ -66,7 +66,7 @@
                 </a>
                 <ul>
                     <li><a href="<?php echo $this->baseUrl('admin/faqs') ?>"><?php echo __('View all FAQs')?></a></li>
-                    <li><a href="<?php echo $this->baseUrl('admin/faqs/save')?>"><?php echo __('Add new FAQ')?></a></li>
+                    <li><a href="<?php echo $this->baseUrl('admin/faqs/add')?>"><?php echo __('Add new FAQ')?></a></li>
                 </ul>
             </li>
             <li class="has_submenu nlightblue">

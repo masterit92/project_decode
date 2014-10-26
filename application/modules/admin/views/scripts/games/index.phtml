@@ -1,0 +1,129 @@
+<?php
+$gameCollection = $this->gameCollection;
+$countRecord = count($gameCollection);
+$no= 1;
+?>
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('game') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('list game') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="javascript:void(0)" class="bread-current"><?php echo __('game') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        <div class="alert alert-success">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        <div class="alert alert-warning">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo $msg ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div> <!--/ Page heading ends -->
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget wred">
+                    <div class="widget-head">
+                        <div class="pull-left"><?php echo __('list game') ?></div>
+                        <div class="widget-icons pull-right">
+                            <a href="<?php echo $this->baseUrl('admin/games/add'); ?>" class=""><?php echo __('add new game')?></a>
+                            <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                        <table class="table table-bordered ">
+                            <thead>
+                            <tr>
+                                <th><?php echo __('STT')?></th>
+                                <th><?php echo __('games name')?></th>
+                                <th><?php echo __('games level')?></th>
+                                <th><?php echo __('games image')?></th>
+                                <th><?php echo __('order')?></th>
+                                <th><?php echo __('status')?></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if(count($gameCollection) > 0):?>
+                            <?php foreach($gameCollection as $game):?>
+                                <?php
+                                if($game['game_status'] == 1){
+                                    $class = 'label-success';
+                                    $gameStatus = __('active');
+                                    $href = $this->baseUrl('admin/games/updatestatus/id/'.$game['game_id'].'/status/0');
+                                }else{
+                                    $class = 'label-important';
+                                    $gameStatus = __('not active');
+                                    $href = $this->baseUrl('admin/games/updatestatus/id/'.$game['game_id'].'/status/1');
+                                }
+                                ?>
+                                <tr>
+                                    <td><?php echo $no ?></td>
+                                    <td><?php echo $game['game_name'] ?></td>
+                                    <td><?php echo $game['game_difficult'] ?></td>
+                                    <?php
+                                    $game_image = $game['game_image'];
+                                    $arr_image = explode('|', $game_image);
+                                    ?>
+                                    <td>
+                                        <?php foreach ($arr_image as $img): ?>
+                                            <?php if (Check_File_Exists_Upload($img)): ?>
+                                                <img src="<?php echo $this->baseUrl(UPLOAD_URL . $img) ?>" width="70px" height="90px"
+                                                     alt="<?php echo $game['game_name']; ?>"/>
+                                            <?php else: ?>
+                                                <img src="<?php echo $this->baseUrl(UPLOAD_URL . 'no_img.jpg') ?>" width="70px" height="90px"/>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                    <td><?php echo $game['game_order'];?></td>
+                                    <td><a href="<?php echo $href ?>"><span class="label <?php echo $class?>"><?php echo $gameStatus ?></span></a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="<?php echo $this->baseUrl('admin/games/add/id/'.$game['game_id']); ?>" class="btn btn-sm btn-warning">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </div>
+                                        <a class="btn btn-sm btn-danger" href="<?php echo $this->baseUrl('admin/games/delete/id/'.$game['game_id']); ?>" onclick="return confirm('<?php echo __('are you sure?') ?>')"><i class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                                <?php $no++ ?>
+                            <?php endforeach; ?>
+                            <?php else:?>
+                                <tr>
+                                    <td colspan="7"><?php echo __('no data')?></td>
+                                </tr>
+                            <?php endif;?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="widget-foot">
+                        <?php
+                        if(count($gameCollection) > 0){
+                            $currentUrl = $this->baseUrl($this->currentController.'/index');
+                            echo $this->paginationControl($this->pagination, 'Sliding','pagination.phtml',array('currentUrl'=>$currentUrl));
+                        }
+                        ?>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/ Matter ends -->

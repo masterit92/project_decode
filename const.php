@@ -37,7 +37,7 @@ define('DEFAULT_TEMPLATE', TEMPLATE_PATH . "/default/default");
 define('DEFAULT_LANGUAGES', 'vi');
 
 //Số ban ghi trên 1 trang mac dinh
-define('ITEM_COUNT_PER_PAGE', 5);
+define('ITEM_COUNT_PER_PAGE', 4);
 
 //Số trang hiển thị khi phân trang
 define('PAGE_RANGE', 3);
@@ -47,6 +47,13 @@ define('DEAULT_MODULE', 'default');
 
 //Duong dan den thu muc /upload
 define('UPLOAD_URL', 'public/upload/');
+
+//price code
+$prive_code = array(
+    'OFF_PEAK' => 'off-preak',
+    'EVENING' => 'evening',
+    'WEEKEND' => 'weekend');
+define('PRICE_CODE', serialize($prive_code));
 
 //option group code
 //general settings

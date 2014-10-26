@@ -1,0 +1,49 @@
+<div class="left col-md-6">
+    <form class="form-horizontal" role="form" action="<?php echo $this->baseUrl('contact/index'); ?>" method="post">
+        <div class="col-md-6 left-left">
+            <h4><?php echo __('contact') ?></h4>
+            <label><?php echo __('first name') ?></label>
+            <input type="text" class="form-control" name="contacts_ho" value="">
+            <label><?php echo __('contact no') ?></label>
+            <input type="text" class="form-control" name="contacts_diachi" value="">
+            <label><?php echo __('reasons to contact') ?></label>
+        </div>
+        <div class="col-md-6 left-right">
+
+            <label><?php echo __('last name') ?></label>
+            <input type="text" class="form-control" name="contacts_ten" value="">
+            <label><?php echo __('email address') ?></label>
+            <input type="text" class="form-control" name="contacts_email" value="">
+            <textarea class="form-control"name="contacts_tinnhan"></textarea>
+            <input type="submit" value="<?php echo __('SUBMIT') ?>"/>
+        </div>
+    </form>
+</div>
+<div class="right col-md-6">
+    <div class="info">
+        <div class="social">
+            <?php $options_contact_facebook = $this->options_contact_facebook ?>
+            <a href="<?php echo $options_contact_facebook['option_value'] ?>" target="_brank">
+                <img src="<?php echo BaseUrl_Template_Default(); ?>/_/component/images/Decode/icon/fb.png" alt="facebook">
+            </a>
+            <img src="<?php echo BaseUrl_Template_Default(); ?>/_/component/images/Decode/icon/glasses.png" alt="Glasses">
+        </div>
+        <ul>
+            <?php $options_contact_email = $this->options_contact_email ?>
+            <li class="contact-email">
+                <span>: <?php echo $options_contact_email['option_value'] ?></span>
+            <li>
+            <?php $options_contact_phone = $this->options_contact_phone ?>
+            <li class="contact-phone">
+                <span>: <?php echo $options_contact_phone['option_value'] ?></span>
+            <li>
+            <?php $options_contact_add = $this->options_contact_add ?>
+            <li class="contact-room">
+                <span>
+                    <?php echo $options_contact_add['option_value'] ?>
+                </span>
+            <li>
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,152 @@
+<?php
+$singlegame = $this->singlegame;
+$game_id = $singlegame['game_id'];
+$game_image = $singlegame['game_image'];
+$arr_image = explode('|', $game_image);
+?>
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('game') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('list game') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="javascript:void(0)" class="bread-current"><?php echo __('game') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        <div class="alert alert-success">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        <div class="alert alert-warning">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo $msg ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($this->messages)): ?>
+        <div class="alert alert-warning">
+            <?php if (is_array($this->messages)): ?>
+                <?php foreach ($this->messages as $filed => $arr_mess): ?>
+                    <?php foreach ($arr_mess as $mess): ?>
+                        <span style="display: block;"> <?php echo __($mess) ?> </span>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <?php echo $this->messages ?>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</div> <!--/ Page heading ends -->
+<div class="matter">
+    <div class="col-md-12">
+        <div class="widget wred">
+            <div class="widget-head">
+                <div class="pull-left"><?php if($game_id){echo __('edit game');}else{echo __('add new game');}?></div>
+                <div class="widget-icons pull-right">
+                    <a href="<?php echo $this->baseUrl('admin/games/index/'); ?>"><?php echo __('back')?></a>
+                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="widget-content">
+                <div class="padd">
+
+                    <div class="form quick-post">
+                        <form enctype="multipart/form-data" class="form-horizontal" role="form" action="<?php echo $this->baseUrl('admin/games/add/'); ?>" method="post">
+                            <input type="hidden" name="game_id" value="<?php echo $singlegame['game_id'] ?>"/>
+                            <input type="hidden" name="game_lang" value="<?php echo $singlegame['game_lang'] ?>"/>
+                            <!-- game Type -->
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="sitename"><?php echo __('games name')?></label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="sitename" name="game_name" value="<?php echo $singlegame['game_name'] ?>">
+                                </div>
+                            </div>
+                            <!-- game Desc -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" for="sitedescription"><?php echo __('games desc')?></label>
+                                <div class="col-lg-7">
+                                    <textarea class="form-control ckeditor" rows="10" name="game_desc" id="sitedescription"><?php echo $singlegame['game_desc'] ?></textarea>
+                                </div>
+                            </div>
+                            <!-- game level -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-2" for="sitedescription"><?php echo __('games level')?></label>
+                                <div class="col-lg-7">
+                                    <select class="form-control" name="<?php echo "game_difficult" ?>">
+                                        <option value="1" <?php if($singlegame['game_difficult'] == 1) echo "selected='selected'"?>>1</option>
+                                        <option value="2" <?php if($singlegame['game_difficult'] == 2) echo "selected='selected'"?>>2</option>
+                                        <option value="3" <?php if($singlegame['game_difficult'] == 3) echo "selected='selected'"?>>3</option>
+                                        <option value="4" <?php if($singlegame['game_difficult'] == 4) echo "selected='selected'"?>>4</option>
+                                        <option value="5" <?php if($singlegame['game_difficult'] == 5) echo "selected='selected'"?>>5</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- game image-->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label"><?php echo __('games image') ?></label>
+                                <div class="col-md-7">
+                                    <input type="file" class="form-control" name="file_name" >
+                                </div>
+                            </div>
+                            <?php if (count($arr_image) > 0): ?>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-8">
+                                        <?php foreach ($arr_image as $img): ?>
+                                            <?php if (Check_File_Exists_Upload($img)): ?>
+                                                <img src="<?php echo $this->baseUrl(UPLOAD_URL . $img) ?>" width="100" height="100"/>
+                                            <?php else: ?>
+                                                <img src="<?php echo $this->baseUrl(UPLOAD_URL . 'no_img.jpg') ?>" width="100" height="100"/>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <!-- g No -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-2"><?php echo __('order')?></label>
+                                <div class="col-lg-7">
+                                    <input type="text" class="form-control" id="sitename" name="game_sort" value="<?php echo $singlegame['game_order'] ?>">
+                                </div>
+                            </div>
+                            <!-- game Status -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-2"><?php echo __('status')?></label>
+                                <div class="col-lg-7">
+                                    <div class="radio">
+                                        <label><input type="radio" name="<?php echo "game_status" ?>" id="1" value="1" <?php if($singlegame['game_status'] == 1){echo 'checked';}?>><?php echo __('enable')?></label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="<?php echo "game_status" ?>" id="0" value="0" <?php if($singlegame['game_status'] == 0){echo 'checked';}?>><?php echo __('disable')?></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="form-group">
+                                <!-- Buttons -->
+                                <div class="col-lg-9 col-lg-offset-2">
+                                    <button type="submit" class="btn btn-info"><?php echo __('Save Now')?></button>
+                                    <button type="reset" class="btn btn-default"><?php echo __('Reset')?></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

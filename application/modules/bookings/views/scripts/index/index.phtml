@@ -1,0 +1,45 @@
+<?php 
+$list_game = $this->list_game;
+?>
+<div id="booking-container">
+    <?php if(count($list_game) > 0):?>
+    <?php foreach ($list_game as $game):?>
+        <div class="item-booking col-md-6">
+            <a href="#">
+                <?php if(Check_File_Exists_Upload($game['game_image'])):?>
+                    <img src="<?php echo $this->baseUrl(UPLOAD_URL .$game['game_image'])?>" alt="item booking" class="img-item" width="244px" height="313px"/>
+                <?php else:?>
+                    <img src="<?php echo $this->baseUrl(UPLOAD_URL . 'no_img.jpg') ?>" alt="item booking" class="img-item" width="244px" height="313px"/>
+                <?php endif;?>
+            </a>
+
+            <div class="media-body">
+                <a href="#"><h4><?php echo $game['game_name']?></h4></a>
+
+                <p>
+                    <?php echo $game['game_desc']?>
+                </p>
+                <span>
+                    <?php echo __('difficult')?>:
+                    <?php for($i=0;$i<$game['game_difficult']; $i++):?>
+                    <img src="<?php echo $this->baseUrl('public/upload/difficult.png') ?>"/>
+                    <?php endfor;?>
+                </span>
+                <a href="<?php echo $this->baseUrl('bookings/index/booking/id/'.$game['game_id'])?>" class="btn-book"><?php echo __('Book Now') ?></a>
+            </div>
+        </div>
+    <?php endforeach;?>
+    <!--//pagination-->
+    <div class="clearfix"></div>
+    <div class="col-md-12 pagination">
+    <?php
+    $currentUrl = $this->baseUrl($this->currentController . '/index');
+    echo $this->paginationControl($this->pagination, 'Sliding', 'pagination.phtml', array('currentUrl' => $currentUrl));
+    ?>
+    </div>
+    <?php else:?>
+    <div class="col-md-12">
+        <?php echo __('no game')?>
+    </div>
+    <?php endif;?>
+</div>

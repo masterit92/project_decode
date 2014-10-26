@@ -1,0 +1,110 @@
+<?php 
+$arr_faqs = $this->faqs;
+?>
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('faqs') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('list faqs') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="javascript:void(0)" class="bread-current"><?php echo __('faqs') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        <div class="alert alert-success">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        <div class="alert alert-warning">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo $msg ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div> <!--/ Page heading ends -->
+<div class="matter">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget wred">
+                    <div class="widget-head">
+                        <div class="pull-left"><?php echo __('list faqs')?></div>
+                        <div class="widget-icons pull-right">
+                            <a href="<?php echo $this->baseUrl('admin/faqs/add')?>" ><?php echo __('add new faqs')?></a>
+                            <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                        <table class="table table-bordered ">
+                            <thead>
+                            <tr>
+                                <th><?php echo __('STT')?></th>
+                                <th><?php echo __('question')?></th>
+                                <th><?php echo __('status')?></th>
+                                <th><?php echo __('order')?></th>
+                                <th><?php echo __('action')?></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php if(count($arr_faqs) > 0):?>
+                                <?php
+                                    $stt = 1;
+                                    foreach($arr_faqs as $faq):
+                                ?>
+                                <tr>
+                                    <td><?php echo $stt;?></td>
+                                    <td><?php echo $faq['faq_question']?></td>
+                                    <td>
+                                       <?php if ($faq['faq_status'] == 1): ?>
+                                            <a href="<?php echo $this->baseUrl("admin/faqs/updatestatus/id/{$faq['faq_id']}/status/0") ?>">
+                                                <span class="label label-success"><?php echo __('active') ?></span>
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?php echo $this->baseUrl("admin/faqs/updatestatus/id/{$faq['faq_id']}/status/1") ?>">
+                                                <span class="label label-important"><?php echo __('not active') ?></span>
+                                            </a>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php echo $faq['faq_order'] ?></td>
+                                    <td>
+                                        <a class="btn btn-sm btn-warning"  title="<?php echo __('edit')?>" href="<?php echo $this->baseUrl('admin/faqs/edit/id/').$faq['faq_id'];?>"><i class="fa fa-pencil"></i> </a>
+                                        <a class="btn btn-sm btn-danger"  title="<?php echo __('delete')?>" href="<?php echo $this->baseUrl('admin/faqs/delete/id/').$faq['faq_id'];?>" onclick="return confirm('<?php echo __('are you sure?') ?>')"><i class="fa fa-times"></i> </a>
+                                    </td>
+                                </tr>
+                                <?php $stt++;endforeach;?>
+                                <?php else:?>
+                                <tr>
+                                    <td colspan="5"><?php echo __('no data')?></td>
+                                </tr>
+                                <?php endif;?>
+                            </tbody>
+                        </table>
+                    </div>
+                     <?php if(count($arr_faqs) > 0):?>
+                    <div class="widget-foot">
+                        <?php
+                            $currentUrl = $this->baseUrl($this->currentController.'/index');
+                            echo $this->paginationControl($this->pagination, 'Sliding','pagination.phtml',array('currentUrl'=>$currentUrl));
+                        ?>
+                        <div class="clearfix"></div>
+                    </div>
+                    <?php endif;?>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,103 @@
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('faqs') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('update new faqs') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="javascript:void(0)" class="bread-current"><?php echo __('faqs') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        <div class="alert alert-success">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        <div class="alert alert-warning">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo $msg ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif;?>
+</div> <!--/ Page heading ends -->
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget wred">
+                    <div class="widget-head">
+                        <div class="pull-left"><?php echo __('update new faqs')?></div>
+                        <div class="widget-icons pull-right">
+                            <a href="<?php echo $this->baseUrl('admin/faqs/'); ?>"><?php echo __('back')?></a>
+                            <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="padd">
+                            <hr />
+                            <!-- Form starts.  -->
+                            <form class="form-horizontal" role="form" method="POST" action="<?php echo $this->baseUrl('admin/faqs/save')?>">
+                                <input type="hidden" name="id" value="<?php echo $this->items['faq_id']?>"/>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('question')?></label>
+<!--                                    --><?php //var_dump($this->item);?>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" placeholder="<?php echo __('question')?>" name="faq_question" value="<?php echo (isset($this->items['faq_question']))?$this->items['faq_question']:''?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('status')?></label>
+                                    <div class="col-md-8">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="faq_status" id="hien" value="1" <?php echo (($this->items['faq_status']) == 1)?'checked':''?>>
+                                                <?php echo __('active')?>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="faq_status" id="an" value="0" <?php echo (($this->items['faq_status']) == 0)?'checked':''?>>
+                                                <?php echo __('not active')?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('answer')?></label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control ckeditor" rows="10"  cols="10" placeholder="<?php echo __('answer')?>" name="faq_answer">
+                                            <?php if(isset($this->items['faq_answer'])) echo $this->items['faq_answer']?>
+                                        </textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-lg-2"><?php echo __('order')?></label>
+                                    <div class="col-lg-7">
+                                        <input type="text" class="form-control" id="sitename" name="faq_sort" value="<?php echo $this->items['faq_order'] ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-8">
+                                        <input type="submit" class="btn btn-success" value="<?php echo __('Edit Question')?>"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/ Matter ends -->

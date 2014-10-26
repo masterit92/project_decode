@@ -6,6 +6,10 @@ class FTeam_Controller_Action extends Zend_Controller_Action
     protected $class_body = 'home';
     protected $_currentController;
     protected $languages = DEFAULT_LANGUAGES;
+    protected $_paginator = array(
+        'itemCountPerPage' => ITEM_COUNT_PER_PAGE,
+        'pageRange' => PAGE_RANGE,
+    );
 
     public function init()
     {
@@ -16,6 +20,10 @@ class FTeam_Controller_Action extends Zend_Controller_Action
         $this->_currentController = '/' . $this->_arrParam['module'] . '/' . $this->_arrParam['controller'];
         $this->view->currentController = $this->_currentController;
         $this->getConfigsGeneral();
+        $this->_paginator['currentPage'] = $this->_request->getParam('page', 1);
+        $this->_arrParam = $this->_request->getParams();
+        $this->_currentController = '/' . $this->_arrParam['module'] . '/' . $this->_arrParam['controller'];
+        $this->view->currentController = $this->_currentController;
     }
 
     protected function loadTemplate($template_path, $fileConfig = 'template.ini', $sectionConfig = 'template')

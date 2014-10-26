@@ -1,0 +1,42 @@
+<div class="container">
+
+        <?php if($this->faqs):?>
+        <?php $i=1; foreach($this->faqs as $item):?>
+        <div class="row faq-toggle faq-toggle-<?php echo $i?>" >
+            <h4 class="top-title"><?php echo $item['faq_question'] ?></h4>
+
+            <p style="display: none"><?php echo $item['faq_answer']?></p>
+        </div>
+        <?php $i++; endforeach;?>
+        <?php endif;?>
+</div>
+<style type="text/css">
+    
+    .top-title{
+        cursor: pointer;
+    }
+    .faq .faq-toggle h4.active {
+        display: block;
+    }
+    .faq .faq-toggle p {
+        display: none;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $('.faq .faq-toggle-1 h4.top-title').addClass('active');
+        $('.faq .faq-toggle-1 p').show();
+        $('.faq h4.top-title').on('click', function() {
+            $(this).next().slideToggle();
+            $(this).removeClass('active').next().addClass('active');
+        })
+
+        $('.faq h4.bottom-title').on('click', function() {
+            $(this).next('p').slideToggle();
+            $(this).removeClass('active').prev().addClass('active');
+        })
+
+    })
+</script>
