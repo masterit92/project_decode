@@ -1,0 +1,996 @@
+@import "bootstrap.less";
+
+/*=======================CUSTOM======================*/
+/* @grid-float-breakpoint: 992px; */
+@navbar-default-link-color: #fff;
+@navbar-default-link-active-color: #fff;
+
+body {
+    background-color: #000;
+    font-family: Calibri,Helvetica,sans-serif;
+    font-size: 24px;
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+/*=======================TOP======================*/
+header {
+    background: url('../images/Decode/top/bgtop.png') no-repeat;
+    width: 100%;
+    min-height: 605px;
+
+}
+
+header h1 {
+    margin: 0px;
+}
+
+header .header-top {
+    min-height: 150px;
+    border-bottom: 6px solid red;
+}
+
+header .header-top .navbar-default {
+    background: none;
+    border: none;
+    margin-top: 40px;
+}
+
+header .navbar-collapse {
+    margin-top: 60px;
+}
+
+header .navbar {
+    margin-bottom: 0px;
+}
+
+header .navbar-default .navbar-nav > li > a
+{
+    font-family: Calibri;
+    font-size: 24px;
+
+}
+
+header .navbar-default .navbar-nav > .active > a, header .navbar-default .navbar-nav > .active > a:hover {
+    background-color: #ff0000;
+
+}
+
+header .header-content {
+    width: 100%;
+    height: 465px;
+    background: url('../images/Decode/top/bg_content_top.png') no-repeat;
+    background-attachment: scroll;
+    background-position: center top !important;
+    background-size: cover;
+    border-top: 1px solid red;
+    position: relative;
+}
+
+header .header-content h2 {
+    font-family: 'BebasNeueRegular',Arial,Helvetica,sans-serif;
+    text-align: center;
+    font-size: 55px;
+    color: #fff;
+    margin-top: 200px;
+}
+header .header-content .booking-now {
+    width: 186px;
+    height: 188px;
+    background: url('../images/Decode/bookingNow/book_now.png');
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 200px;
+}
+
+header .header-content a.book-now {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    width: 170px;
+    height: 92px;
+    position: absolute;
+    top: 82px;
+    right:208px;
+}
+
+header .header-content .flag-language {
+    position: absolute;
+    top: 48px;
+    right: 128px;
+}
+
+header .header-content .flag-language ul {
+    list-style: none;
+
+}
+
+header .header-content .flag-language ul li {
+    margin-bottom: 8px;
+}
+
+/* ---------------------The Game---------------------- */
+.the-game header {
+    min-height: 100px;
+    /* 	border-bottom: 7px solid red; */
+}
+
+
+
+.the-game .content .relax-flag {
+    position: relative;
+}
+
+.the-game .content .flag-language ul {
+    list-style: none;
+    position: absolute;
+    top: -90px;
+    right: 0px;
+}
+
+.the-game .content #video-banner {
+    margin-top: 100px !important;
+}
+
+.the-game .bot-content ul.inline {
+    padding-left: 50px;
+}
+
+.the-game .content .note {
+    padding-left: 130px;
+    color: red;
+}
+
+.the-game .content .note i a {
+    color: red;
+}
+
+.the-game .bot-content p.active{
+    color: red;
+}
+
+.the-game .bot-content p {
+    text-align: center;
+}
+
+/* ---------------------Book Now---------------------- */
+.booking header {
+    min-height: 100px;
+}
+
+.booking .top-content .relax-flag {
+    position: relative;
+}
+
+.booking .top-content  .relax-flag .flag-language {
+    list-style: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+
+.booking .item-booking {
+    padding: 30px 20px 30px 25px;
+    max-width: 490px;
+    overflow: hidden;
+    background: url('../images/Decode/background/bg-item.png');
+    margin: 20px;
+}
+
+.booking .item-booking img.img-item {
+    float: left;
+    padding-right: 23px;
+}
+
+
+
+.booking .item-booking h4 {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    margin: 0px;
+}
+
+.booking .item-booking span {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.booking .item-booking a.btn-book {
+    display: block;
+    width: 181px;
+    height: 38px;
+    float: right;
+    margin-top: 30px;
+    background: url('../images/Decode/icon/book-now.png') no-repeat;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.booking .content .bot-content ul {
+    margin: 0px 0px 20px 0px;
+}
+
+.booking .content .bot-content ul li {
+    padding: 0px 50px;
+    border-right: 2px solid #fff;
+}
+
+.booking .content .bot-content ul li:last-child {
+    border-right: none;
+}
+
+.booking .content .bot-content span.price {
+    color: red;
+    font-size: 24px;
+}
+
+.booking .content .bot-content ul li p {
+    margin: 0px;
+    font-size: 18px;
+}
+
+.booking .bot-content .bot-booking {
+    background: url('../images/Decode/background/bg_price_booking.png') repeat-x;
+    height: 144px;
+    max-width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    overflow: hidden;
+    margin: auto;
+}
+
+.booking .bot-content .bot-booking .center {
+    max-width: 800px;
+    margin: auto;
+}
+
+.booking .content .mid-content p {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 10px;
+    max-height: 220px;
+    overflow: hidden;
+}
+
+/* ---------------------BOOKING - DETAIL---------------------- */
+.booking-detail header {
+    min-height: 100px;
+}
+
+.booking-detail .top-content .flag-language {
+    list-style: none;
+    position: absolute;
+    top: 188px;
+    right: 98px;
+}
+
+.booking-detail .mid-content h4{
+    font-size: 28px;
+    font-weight: bold;
+    color: red;
+    margin-top: 50px;
+
+}
+
+.booking-detail .mid-content .desc-booking-detail {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0px;
+    text-align: left;
+}
+
+.booking-detail .mid-content p {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0px !important;
+    max-width: 100%;
+
+}
+
+.booking-detail .mid-content table tr {
+    height: 34px;
+    background: url('../images/Decode/background/bg-item.png') no-repeat;
+    /* 	border-bottom: 15px solid rgba(255, 165, 0, 0.0); */
+}
+
+.booking-detail .mid-content table tr.space {
+    height: 15px;
+}
+
+.booking-detail .mid-content table tr td {
+    border-top: none;
+    text-align: center;
+    margin-bottom: 50px;
+
+}
+
+.booking-detail .mid-content table tr td a:hover {
+    text-decoration: none !important;
+    color: red !important;
+}
+
+.booking-detail .mid-content table tr td a {
+    color: #fff;
+}
+
+.booking-detail .mid-content table tr td.reserved, .booking-detail .mid-content table tr td.reserved:hover {
+    background: red;
+    height: 34px;
+    color: #fff;
+}
+
+.booking-detail .mid-content table tbody tr td.acti a, .booking-detail .mid-content table tbody tr td:hover a {
+    color: red;
+    cursor: pointer;
+}
+
+.booking-detail .mid-content table thead tr.controls {
+    background: url('../images/Decode/background/bg-item.png') no-repeat;
+}
+
+.booking-detail .mid-content .day table.table {
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    border-bottom: 1px solid red;
+}
+
+.booking-detail .mid-content .day table.table tr td {
+    border-top: 1px solid red;
+}
+
+
+/* ---------------------FAQ---------------------- */
+.faq header, .contact header,.booking-form header {
+    min-height: 100px;
+}
+
+.faq .content .top-content,.contact .content .top-content, .booking-form .content .top-content {
+    position: relative;
+}
+
+.faq .content .booking-now,.contact .content .booking-now {
+    width: 186px;
+    height: 188px;
+    background: url('../images/Decode/bookingNow/book_now.png');
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 200px;
+}
+
+.faq .content a.book-now,.contact .content a.book-now {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    width: 170px;
+    height: 92px;
+    position: absolute;
+    top: 82px;
+    right:208px;
+}
+
+.faq .content .flag-language, .contact .content .flag-language, .booking-form .flag-language {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+
+.faq .content .flag-language ul li, .contact .content .flag-language ul li {
+    margin-bottom: 8px;
+}
+
+.faq .content .mid-content .row {
+    max-width: 730px;
+}
+
+.faq .content .mid-content .faq-toggle-1 {
+    padding-top: 78px;
+}
+
+.faq .content .mid-content h4{
+    font-size: 24px;
+    color: red;
+}
+
+.faq .content .mid-content p {
+    font-size: 18px;
+}
+
+/* ---------------------CONTACT---------------------- */
+.contact .mid-content form, .booking-form .mid-content form {
+    margin-top: 54px;
+}
+
+.contact .mid-content form label,.booking-form .mid-content form label {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 24px;
+}
+
+.contact .mid-content form input, .booking-form .mid-content form input {
+    max-width: 100%;
+    width: 100%;
+    color: #000;
+    font-weight: normal;
+    font-size: 16px;
+}
+.booking-form .mid-content form select{
+    max-width: 100%;
+    width: 100%;
+    color: #000;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.contact .mid-content form textarea {
+    max-width: 100%;
+    width: 100%;
+    min-height: 150px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #000;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.contact .mid-content form input[type=submit], .booking-form .mid-content form input[type=submit] {
+    max-width: 161px;
+    min-height: 38px;
+    display: block;
+    background: url('../images/Decode/icon/button-submit.png') no-repeat;
+    border: none;
+    margin: auto;
+    color: #fff;
+    font-weight: bold;
+}
+
+.contact .content .mid-content h4,.booking-form .content .mid-content h4 {
+    font-size: 36px;
+    color: red;
+    font-weight: bold;
+}
+
+.contact .content .mid-content .left-right {
+    margin-top: 49px;
+}
+
+.contact .content .mid-content .right {
+    margin-top: 225px;
+    background: url('../images/Decode/background/bg-item.png');
+    padding: 32px 18px;
+}
+
+.contact .content .mid-content .right .social {
+    float: left;
+    width: 85px;
+    padding-right: 20px;
+    border-right: 3px solid #fff;
+}
+
+.contact .content .mid-content .right .social  a {
+    margin-bottom: 25px;
+    display: block;
+}
+
+.contact .content .mid-content .right .social a:last-child {
+    margin-bottom: 0px;
+}
+
+.contact .content .mid-content .right ul {
+    float: left;
+    max-width: 440px;
+}
+
+.contact .content .mid-content .right ul li.contact-email {
+    background: url('../images/Decode/icon/mail.png') no-repeat;
+    padding: 10px 0px 10px 60px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact .content .mid-content .right ul li.contact-phone {
+    background: url('../images/Decode/icon/phone.png') no-repeat;
+    padding: 10px 0px 10px 60px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact .content .mid-content .right ul li.contact-room {
+    background: url('../images/Decode/icon/room.png') no-repeat;
+    padding: 10px 0px 10px 60px;
+    font-size: 18px;
+}
+
+.contact .content .bot-content {
+    margin-top: 65px;
+}
+
+.contact .content .bot-content .contact-map {
+    max-width: 1028px;
+    max-height: 470px;
+    border: 10px solid #fff;
+    margin: auto;
+
+}
+/* ---------------------BOOKING-FORM---------------------- */
+.booking-form  h4 {
+    margin: 0px;
+    padding: 0px;
+}
+.booking-form  quote {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+
+.booking-form ul li span, .booking-form i {
+    font-size: 18px;
+}
+
+.booking-form .mid-content form input[type=submit] {
+    color: #fff;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.contact .content .mid-content .right, .booking-form .content .mid-content .right {
+    margin-top: 175px;
+    background: url('http://localhost/test/decode/_/component/images/Decode/background/bg-item.png');
+    padding: 32px 18px;
+    overflow: hidden;
+}
+
+/*=======================CONTENT======================*/
+.content {
+    background: url('../images/Decode/background/bg_fire.png') repeat-y;
+    padding-bottom: 55px;
+}
+
+.content .top-content #video-banner {
+    max-width: 848px;
+    max-height: 488px;
+    margin: 36px auto;
+    border: 10px solid #fff;
+}
+
+.content .mid-content {
+    overflow: hidden;
+}
+
+.content .mid-content h3 {
+    font-family: Calibri,Helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    background: url('../images/Decode/background/box-top-content.png') no-repeat;
+    max-width: 559px;
+    height: 122px;
+    line-height: 78px;
+    padding-left: 30px;
+}
+
+.content .mid-content p {
+    max-width: 870px;
+    font-family: Calibri,Helvetica,sans-serif;
+    font-size: 24px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.content .bot-content ul {
+    list-style: none;
+    width: 100%;
+    margin: 90px auto;
+    padding-left: 100px;
+
+}
+.the-game .content .bot-content ul {
+    list-style: none;
+    width: 100%;
+    margin: 15px auto;
+    padding-left: 100px;
+
+}
+.the-game .content .bot-content ul li p {
+    font-family: Calibri,Helvetica,sans-serif;
+    font-size: 24px;
+    margin-top: 10px;
+}
+.content .bot-content ul li {
+    display: inline-block;
+}
+
+.content .bot-content ul li p {
+    font-family: Calibri,Helvetica,sans-serif;
+    font-size: 24px;
+    margin-top: 25px;
+}
+
+/*=======================FOOTER======================*/
+footer {
+    background: url('../images/Decode/top/bgtop.png') no-repeat;
+    border-top: 2px solid #fff;
+}
+footer .main-footer {
+    text-align: right;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    padding-right: 40px;
+}
+
+/*=======================MIN-WIDTH: 992px======================*/
+@media (min-width: 992px) {
+    header .header-content {
+        background-attachment: scroll;
+        background-position: center top !important;
+        background-size: cover;
+    }
+    header .header-top .navbar-default .navbar-toggle{
+        margin-top: 60px;
+        margin-right: 0px;
+    }
+
+}
+
+/*=======================WIDTH: 992px->1200px======================*/
+@media (min-width: 992px) and (max-width: 1200px){
+    .the-game .bot-content ul.inline li img {
+        max-width: 180px;
+    }
+
+    .booking .item-booking {
+        padding: 20px 10px 20px 15px;
+        max-width: 410px;
+        overflow: hidden;
+        background: url('../images/Decode/background/bg-item.png');
+        margin: 20px;
+    }
+
+    .booking .item-booking img.img-item {
+        float: left;
+        padding-right: 13px;
+        max-width: 180px;
+    }
+
+    .booking .content .mid-content p {
+        font-size: 16px;
+    }
+
+    .content .top-content {
+        margin-bottom: 100px;
+    }
+
+    .contact .mid-content form input {
+        max-width: 200px;
+        max-height: 28px;
+    }
+
+    .contact .content .mid-content .right ul {
+        float: left;
+        max-width: 320px;
+    }
+
+
+}
+
+/*=======================WIDTH: 768px->992px======================*/
+@media (min-width: 768px) and (max-width: 992px){
+    header .container {
+        width: 100%;
+    }
+    header .navbar-default .navbar-nav > li > a {
+        font-family: Calibri;
+        font-size: 20px;
+    }
+    .content .bot-content ul {
+        padding-left: 0px;
+    }
+
+    .the-game .bot-content ul.inline {
+        padding-left: 0px;
+    }
+
+    .the-game .bot-content ul.inline li img {
+        max-width: 180px;
+    }
+
+    .the-game .content .note {
+        padding-left: 0px;
+        color: red;
+    }
+
+    .booking .item-booking {
+        max-width: 590px;
+    }
+
+    .booking .bot-content .bot-booking .center {
+        padding-left: 30px;
+    }
+
+    .booking .bot-content .bot-booking .center p {
+        clear:both;
+    }
+
+    /*.booking tbody a:hover {*/
+        /*color: #ff0000;*/
+    /*}*/
+
+    .content .top-content {
+        margin-bottom: 100px;
+    }
+
+    .contact .content .mid-content .right .social img {
+        max-width: 40px;
+    }
+
+    .contact .content .mid-content .right .social {
+        width: 65px;
+    }
+
+    .contact .content .mid-content .right ul {
+        max-width: 240px;
+        padding-left: 20px;
+    }
+
+
+}
+
+/*=======================MAX-WIDTH: 480px======================*/
+@media (max-width: 480px) {
+
+    header .header-top .navbar-default .navbar-toggle{
+        margin-top: 60px;
+        margin-right: 0px;
+    }
+    header .header-top .navbar-default .logo {
+        max-width: 210px;
+    }
+    header .header-top .navbar-default .logo .navbar-brand {
+        padding-left: 0px;
+    }
+
+    header .header-content .booking-now {
+        width: 186px;
+        height: 188px;
+        background: url('../images/Decode/bookingNow/book_now.png');
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 70px;
+    }
+
+    header .header-content .flag-language {
+        position: absolute;
+        top: 48px;
+        right: 20px;
+    }
+
+    .content .top-content {
+        margin-bottom: 100px;
+    }
+
+    .content .mid-content h3{
+        font-size: 18px;
+    }
+
+    .content .mid-content p  {
+        font-size: 14px;
+    }
+
+    footer .main-footer {
+        text-align: center;
+        font-size: 12px;
+        min-height: 40px;
+        line-height: 40px;
+        padding-right: 0px;
+    }
+
+    .content .bot-content ul {
+        padding-left: 0px;
+    }
+
+    .the-game .content .note {
+        padding-left: 0px;
+    }
+
+    .content .bot-content ul {
+        margin:auto;
+        width: 190px;
+    }
+
+    .the-game .bot-content ul.inline li img {
+        max-width: 221px;
+    }
+
+    .the-game .content .bot-content ul {
+        margin: 30px auto;
+        width: 100%;
+        padding-left: 30px;
+    }
+
+    .booking .item-booking .media-body {
+        clear:both;
+    }
+
+    .booking .item-booking img.img-item {
+        max-width: 220px;
+    }
+
+    .booking .bot-content .bot-booking {
+        background: url('http://localhost/test/decode/_/component/images/Decode/background/bg_price_booking.png') repeat;
+        max-width: 490px;
+        height: 100%;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 20px;
+    }
+
+    .booking .bot-content .bot-booking ul li {
+        border-right: none;
+        /* 		border-bottom: 3px solid #fff; */
+        padding: 20px 0px;
+    }
+
+    .booking .bot-content .bot-booking .center {
+        padding: 20px;
+    }
+
+    .booking .bot-content .bot-booking .center p {
+        clear:both;
+    }
+
+    .faq .content .booking-now, .contact .content .booking-now {
+        position: absolute;
+        right: 80px;
+        top: 0;
+    }
+
+    .faq .content a.book-now, .contact .content a.book-now {
+        position: absolute;
+        right: 88px;
+        top: 82px;
+    }
+
+    .faq .content .flag-language, .contact .content .flag-language {
+        position: absolute;
+        right: 20px;
+        top: 48px;
+    }
+
+    .contact .content .mid-content {
+        margin-top: 150px;
+    }
+
+    .contact .content .mid-content .right .social {
+        clear:both;
+        width: 100%;
+        border-right: none;
+        border-bottom:3px solid #fff;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+
+    .contact .content .mid-content .right .social a {
+        float: left;
+        margin-right: 20px;
+    }
+
+    .contact .content .mid-content .right ul {
+        padding-left: 0px;
+    }
+
+}
+
+
+/*=======================WIDTH: 480px->768px======================*/
+
+@media (min-width: 480px) and (max-width:768px) {
+    .content .bot-content ul {
+        margin:auto;
+        width: 480px;
+    }
+    .content .bot-content ul li {
+        padding: 30px;
+    }
+
+    .content .mid-content h3 {
+        font-size: 24px;
+    }
+
+    header .header-top .navbar-default .navbar-toggle{
+        margin-top: 60px;
+        margin-right: 0px;
+    }
+    header .header-top .navbar-default .logo {
+        max-width: 210px;
+    }
+    header .header-top .navbar-default .logo .navbar-brand {
+        padding-left: 0px;
+    }
+
+    .content .top-content {
+        margin-bottom: 100px;
+    }
+
+    .content .bot-content ul {
+        padding-left: 0px;
+    }
+    .the-game .bot-content ul.inline li img {
+        max-width: 180px;
+    }
+
+    .the-game .content .bot-content ul {
+        margin: 30px auto;
+        width: 100%;
+        padding-left: 10px;
+    }
+
+    .the-game .content .note {
+        color: red;
+        padding-left: 0px;
+    }
+
+    .booking .item-booking .media-body {
+        clear:both;
+    }
+
+    .booking .bot-content .bot-booking {
+        background: url('http://localhost/test/decode/_/component/images/Decode/background/bg_price_booking.png') repeat;
+        max-width: 490px;
+        height: 100%;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 20px;
+    }
+
+    .booking .bot-content .bot-booking ul li {
+        border-right: none;
+        padding: 20px 0px;
+    }
+
+    .booking .bot-content .bot-booking .center {
+        padding: 20px;
+    }
+
+    .booking .bot-content .bot-booking .center p {
+        clear:both;
+    }
+
+    .contact .content .mid-content .right .social {
+        clear:both;
+        width: 100%;
+        border-right: none;
+        border-bottom:3px solid #fff;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+
+    .contact .content .mid-content .right .social a {
+        float: left;
+        margin-right: 20px;
+    }
+
+    .contact .content .mid-content {
+        margin-top: 150px;
+    }
+}
+
+

@@ -1,0 +1,126 @@
+<?php
+$single_option = $this->single_option;
+$option_id = $single_option['option_id'];
+$option_name = $single_option['option_name'];
+$option_value = $single_option['option_value'];
+$option_images = $single_option['option_image'];
+$option_status = $single_option['option_status'];
+$option_group = $single_option['option_group'];
+$arr_images = explode('|', $option_images);
+?>
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('settings') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('settings for website') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="<?php echo $this->baseUrl('admin/settings') ?>" class="bread-current"><?php echo __('settings') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php if (isset($this->messages)): ?>
+        <?php if (is_array($this->messages)): ?>
+            <?php foreach ($this->messages as $filed => $arr_mess): ?>
+                <?php foreach ($arr_mess as $mess): ?>
+                    <div class="alert alert-warning">
+                        <span style="display: block;"> <?php echo __($mess) ?> </span>
+                    </div>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="alert alert-success">
+                <?php echo __($this->messages) ?>
+            </div>
+        <?php endif; ?>
+
+    <?php endif; ?>
+</div> <!--/ Page heading ends -->
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget wgreen">
+                    <div class="widget-head">
+                        <div class="pull-left"><?php echo __('update settings') ?></div>
+                        <div class="widget-icons pull-right">
+                            <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                            <a href="<?php echo $this->baseUrl('admin/settings/index'); ?>"><?php echo __('back')?></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="padd">
+
+                            <h6><?php echo $option_group ?></h6>
+                            <hr />
+                            <!-- Form starts.  -->
+                            <form enctype="multipart/form-data" class="form-horizontal" role="form" method="POST" action="<?php echo $this->baseUrl("admin/settings/update/id/$option_id") ?>">
+                                <input type="hidden" name="txt_id" value="<?php echo $option_id ?>"/>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('name') ?></label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="txt_name" placeholder="<?php echo __('name') ?>" value="<?php echo $option_name ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('value') ?></label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control ckeditor" rows="10" name="txt_value" placeholder="<?php echo __('value') ?>" ><?php echo $option_value ?></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('images') ?></label>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control" name="file_name[]" multiple="true">
+                                    </div>
+                                </div>
+                                <?php if (count($arr_images) > 0): ?>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label"></label>
+                                        <div class="col-md-8">
+                                            <?php foreach ($arr_images as $img): ?>
+                                                <?php if (Check_File_Exists_Upload($img)): ?>
+                                                    <img src="<?php echo $this->baseUrl(UPLOAD_URL . $img) ?>" width="100" height="100"/>
+                                                <?php else: ?>
+                                                    <img src="<?php echo $this->baseUrl(UPLOAD_URL . 'no_img.jpg') ?>" width="100" height="100"/>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('status') ?></label>
+                                    <div class="col-md-8">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="rdb_status" value="1" <?php echo $option_status == 1 ? 'checked' : '' ?>>
+                                                <?php echo __('active') ?>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="rdb_status"  value="0" <?php echo $option_status == 0 ? 'checked' : '' ?>>
+                                                <?php echo __('not active') ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-4 col-md-6">
+                                        <button type="submit" class="btn btn-primary"><?php echo __('Save Now') ?></button>
+                                        <button type="reset" class="btn btn-default"><?php echo __('Reset') ?></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--form end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

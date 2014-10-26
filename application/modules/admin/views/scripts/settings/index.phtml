@@ -1,0 +1,317 @@
+<?php
+$general_settings = $this->general_settings;
+$home_setting = $this->home_setting;
+$game_setting = $this->game_setting;
+$contact_setting = $this->contact_setting;
+?>
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('settings') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('settings for website') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="javascript:void(0)" class="bread-current"><?php echo __('settings') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        <div class="alert alert-success">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        <div class="alert alert-warning">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo $msg ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div> <!--/ Page heading ends -->
+<!-- Matter -->
+
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <!--config menu-->
+                    <div class="col-md-6">
+                        <div class="widget wred">
+                            <div class="widget-head">
+                                <div class="pull-left"><?php echo __('general settings') ?></div>
+                                <div class="widget-icons pull-right">
+                                    <a href="javascript:void(0)" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+        <!--                            <a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="widget-content">
+                                <table class="table table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo __('STT')?></th>
+                                            <th><?php echo __('name') ?></th>
+                                            <th><?php echo __('group') ?></th>
+                                            <th><?php echo __('status') ?></th>
+                                            <th><?php echo __('action') ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (count($general_settings) > 0): ?>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($general_settings as $general): ?>
+                                                <?php
+                                                $options_id = $general['option_id'];
+                                                $options_name = $general['option_name'];
+                                                $options_status = $general['option_status'];
+                                                $options_group = $general['option_group'];
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $i ?></td>
+                                                    <td><?php echo $options_name ?></td>
+                                                    <td><?php echo $options_group ?></td>
+                                                    <td>
+                                                        <?php if ($options_status == 1): ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/0") ?>">
+                                                                <span class="label label-success"><?php echo __('active') ?></span>
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/1") ?>">
+                                                                <span class="label label-important"><?php echo __('not active') ?></span>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="<?php echo $this->baseUrl("admin/settings/update/id/$options_id"); ?>" class="btn btn-sm btn-warning">
+                                                            <i class="fa fa-pencil"></i> 
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5"><?php echo __('no data') ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
+                    <!--end config menu-->
+                    <!--config home page-->
+                    <div class="col-md-6">
+                        <div class="widget wred">
+                            <div class="widget-head">
+                                <div class="pull-left"><?php echo __('setting for home page') ?></div>
+                                <div class="widget-icons pull-right">
+                                    <a href="javascript:void(0)" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+        <!--                            <a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="widget-content">
+                                <table class="table table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo __('STT')?></th>
+                                            <th><?php echo __('name') ?></th>
+                                            <th><?php echo __('group') ?></th>
+                                            <th><?php echo __('status') ?></th>
+                                            <th><?php echo __('action') ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (count($home_setting) > 0): ?>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($home_setting as $home): ?>
+                                                <?php
+                                                $options_id = $home['option_id'];
+                                                $options_name = $home['option_name'];
+                                                $options_status = $home['option_status'];
+                                                $options_group = $home['option_group'];
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $i ?></td>
+                                                    <td><?php echo $options_name ?></td>
+                                                    <td><?php echo $options_group ?></td>
+                                                    <td>
+                                                        <?php if ($options_status == 1): ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/0") ?>">
+                                                                <span class="label label-success"><?php echo __('active') ?></span>
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/1") ?>">
+                                                                <span class="label label-important"><?php echo __('not active') ?></span>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="<?php echo $this->baseUrl("admin/settings/update/id/$options_id"); ?>" class="btn btn-sm btn-warning">
+                                                            <i class="fa fa-pencil"></i> 
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5"><?php echo __('no data') ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>   
+                    <!--end config home-->
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <!--config the game-->
+                    <div class="col-md-6">
+                        <div class="widget wred">
+                            <div class="widget-head">
+                                <div class="pull-left"><?php echo __('setting for the game') ?></div>
+                                <div class="widget-icons pull-right">
+                                    <a href="javascript:void(0)" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+        <!--                            <a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="widget-content">
+                                <table class="table table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo __('STT')?></th>
+                                            <th><?php echo __('name') ?></th>
+                                            <th><?php echo __('group') ?></th>
+                                            <th><?php echo __('status') ?></th>
+                                            <th><?php echo __('action') ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (count($game_setting) > 0): ?>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($game_setting as $game): ?>
+                                                <?php
+                                                $options_id = $game['option_id'];
+                                                $options_name = $game['option_name'];
+                                                $options_status = $game['option_status'];
+                                                $options_group = $game['option_group'];
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $i ?></td>
+                                                    <td><?php echo $options_name ?></td>
+                                                    <td><?php echo $options_group ?></td>
+                                                    <td>
+                                                        <?php if ($options_status == 1): ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/0") ?>">
+                                                                <span class="label label-success"><?php echo __('active') ?></span>
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/1") ?>">
+                                                                <span class="label label-important"><?php echo __('not active') ?></span>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="<?php echo $this->baseUrl("admin/settings/update/id/$options_id"); ?>" class="btn btn-sm btn-warning">
+                                                            <i class="fa fa-pencil"></i> 
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5"><?php echo __('no data') ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
+                    <!--end config the game-->
+                    <!--config contact-->
+                    <div class="col-md-6">
+                        <div class="widget wred">
+                            <div class="widget-head">
+                                <div class="pull-left"><?php echo __('setting for contact') ?></div>
+                                <div class="widget-icons pull-right">
+                                    <a href="javascript:void(0)" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+        <!--                            <a href="#" class="wclose"><i class="fa fa-times"></i></a>-->
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="widget-content">
+                                <table class="table table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th><?php echo __('STT')?></th>
+                                            <th><?php echo __('name') ?></th>
+                                            <th><?php echo __('group') ?></th>
+                                            <th><?php echo __('status') ?></th>
+                                            <th><?php echo __('action') ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (count($contact_setting) > 0): ?>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($contact_setting as $contact): ?>
+                                                <?php
+                                                $options_id = $contact['option_id'];
+                                                $options_name = $contact['option_name'];
+                                                $options_status = $contact['option_status'];
+                                                $options_group = $contact['option_group'];
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $i ?></td>
+                                                    <td><?php echo $options_name ?></td>
+                                                    <td><?php echo $options_group ?></td>
+                                                    <td>
+                                                        <?php if ($options_status == 1): ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/0") ?>">
+                                                                <span class="label label-success"><?php echo __('active') ?></span>
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <a href="<?php echo $this->baseUrl("admin/settings/updatestatus/id/$options_id/status/1") ?>">
+                                                                <span class="label label-important"><?php echo __('not active') ?></span>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="<?php echo $this->baseUrl("admin/settings/update/id/$options_id"); ?>" class="btn btn-sm btn-warning">
+                                                            <i class="fa fa-pencil"></i> 
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <?php $i++; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5"><?php echo __('no data') ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> 
+                    </div>
+                    <!--end config contact-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div><!--/ Matter ends -->

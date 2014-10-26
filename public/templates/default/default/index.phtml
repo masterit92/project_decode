@@ -1,0 +1,31 @@
+<?php echo $this->doctype() ?>
+<html>
+    <head>
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <script>var ROOT_URL = '<?php echo $this->baseUrl() ?>';</script>
+        <link rel="stylesheet/less" type="text/css"
+              href="<?php echo BaseUrl_Template_Default().'/_/component/less/style.css' ?>" />
+              <?php echo $this->headLink() ?>
+              <?php echo $this->headScript() ?>
+    </head>
+
+    <body class="<?php echo $this->class_body?>">
+        <div class="wrapper">
+            <?php echo $this->render('html/top.php') ?>
+            <section class="content">
+                <div class="container">
+                    <?php echo $this->render('html/top_content.php')?>
+                    <div class="mid-content">
+                        <?php echo $this->layout()->content; ?>
+                    </div>
+                    <?php echo $this->render('html/bot_content.php') ?>
+                </div>
+
+            </section>
+            <?php echo $this->render('html/footer.php') ?>
+        </div>
+
+
+    </body>
+</html>

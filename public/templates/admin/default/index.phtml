@@ -1,0 +1,25 @@
+<?php echo $this->doctype() ?>
+<html>
+    <head>
+        <?php echo $this->headTitle() ?>
+        <?php echo $this->headMeta() ?>
+        <?php echo $this->headLink() ?>
+    </head>
+
+    <body>
+        <?php echo $this->render('html/top.php') ?>
+        <!--content-->
+        <div class="content">
+             <?php echo $this->render('html/menu.php') ?>
+            <!-- Main bar -->
+            <div class="mainbar">
+                <?php //echo $this->render('html/breadscrum.php')?>
+                <?php echo $this->layout()->content; ?>
+            </div><!--/ Mainbar ends -->	
+            <div class="clearfix"></div>
+        </div>
+        <!--endcontent-->
+        <?php echo $this->render('html/footer.php') ?>
+    </body>
+</html>
+ <?php echo $this->headScript() ?>
