@@ -23,4 +23,5 @@ return array(
     'Fri'=>'T.6',
     'Sat'=>'T.7',
     'error data'=>'Lỗi khi lấy dữ liệu.',
+    'Reserved'=>'Đã Đặt',
     );

@@ -24,4 +24,5 @@ return array(
     'Fri'=>'Fri',
     'Sat'=>'Sat',
     'error data'=>'Error request data',
+    'Reserved'=>'Reserved',
 );

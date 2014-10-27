@@ -1,6 +1,7 @@
 <?php
 $list_time = $this->list_time;
 $arr_week_date = $this->week_date;
+$list_bookings = $this->list_bookings;
 $languages = New Zend_Session_Namespace('languages');
 $date_format = 'd/m/Y';
 if ($languages->languages === 'en') {
@@ -20,9 +21,9 @@ $arr_date_key = array(
 <style>
     .booking-detail .mid-content table tbody tr td.acti a{
         color: #ada1a1 !important;
-        cursor: auto;
+        cursor: default;
     }
-    td.acti a:hover,td.acti:hover{ color: #ada1a1 !important;cursor: auto;}
+    td.acti a:hover,td.acti:hover{ color: #ada1a1 !important;cursor: default;}
 </style>
 <div class="row mmb schedule-bar">
     <div class="col-xs-12 col-sm-3 col-md-2">
@@ -56,18 +57,30 @@ $arr_date_key = array(
             ?>
             <tr align="center">
                 <?php for ($i = 0; $i < 7; $i++): ?>
-                <?php 
+                    <?php
                     $class_td = '';
                     $href = '';
-                    if(strtotime($arr_week_date[$arr_date_key[$i]].' '.$time_value) < $curent_time){
+                    $__date = $arr_week_date[$arr_date_key[$i]];
+                    if (strtotime($__date . ' ' . $time_value) < $curent_time) {
                         $class_td = 'acti';
-                    }else{
-                        $href = "href='#'";
+                    } else {
+                        $href = "href='{$this->baseUrl('bookings/index/information')}'";
                     }
-                ?>
-                    <td class="<?php echo $class_td?>">
-                        <a <?php echo $href;?>><?php echo $time_value ?></a>
-                    </td>
+                    $exist_booking = FALSE;
+                    foreach ($list_bookings as $booking) {
+                        if (strtotime($booking['time']) === strtotime($time['time_value']) && strtotime($booking['date']) == strtotime($__date)) {
+                            $exist_booking = TRUE;
+                            break;
+                        }
+                    }
+                    ?>
+                    <?php if ($exist_booking): ?>
+                        <td class="reserved"><?php echo __('Reserved')?></td>
+                    <?php else: ?>
+                        <td class="<?php echo $class_td ?>">
+                            <a <?php echo $href; ?>><?php echo $time_value ?></a>
+                        </td>
+                    <?php endif; ?>
                 <?php endfor; ?>
             </tr>
             <tr class="space"></tr>
