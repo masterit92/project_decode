@@ -1,100 +1,10 @@
 <?php
 $game = $this->game;
-$list_time = $this->list_time;
 ?>
 <div class="mid-content">
     <h4 title="<?php echo $game['game_desc'] ?>"><?php echo $game['game_name'] ?></h4>
     <p class="desc-booking-detail"><?php echo __('Please select your perferred time') ?></p>
-
-    <div class="schedule-container week hidden-xs">
-        <div class="row mmb schedule-bar">
-            <div class="col-xs-12 col-sm-3 col-md-2">
-                <a href="#" class="btn schedule-control prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-8 text-center">
-                <span class="schedule-week">26/10-1/11</span>
-            </div>
-            <div class="col-xs-12 col-sm-3 col-md-2 text-right">
-                <a href="#" class="btn schedule-control next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </div>
-        </div>
-        <table class="table table-responsive">
-            <thead>
-                <tr>
-                    <td><p><?php echo __('Sun') ?></p><p class="">(26/10/2014)</p></td>
-                    <td><p><?php echo __('Mon') ?></p><p>(27/10/2014)</p></td>
-                    <td><p><?php echo __('Tue') ?></p><p>(28/10/2014)</p></td>
-                    <td><p><?php echo __('Wed') ?></p><p>(29/10/2014)</p></td>
-                    <td><p><?php echo __('Thu') ?></p><p>(30/10/2014)</p></td>
-                    <td><p><?php echo __('Fri') ?></p><p>(31/10/2014)</p></td>
-                    <td><p><?php echo __('Sat') ?></p><p>(32/10/2014)</p></td>
-                </tr>
-                <tr class="space"></tr>
-            </thead>
-            <tbody>
-                    <?php foreach ($list_time as $time): ?>
-                        <?php
-                        $time_value = date('H:i', strtotime($time['time_value']));
-                        ?>
-                        <tr align="center">
-                            <?php for ($i = 0; $i < 7; $i++): ?>
-                            <td><a href="#"><?php echo $time_value ?></a></td>
-                            <?php endfor; ?>
-                        </tr>
-                        <tr class="space"></tr>
-                    <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div><!-- schedule-container -->
-    <div class="schedule-container day visible-xs">
-        <div class="row mmb schedule-bar">
-            <div class="col-xs-5">
-                <a href="#" class="btn schedule-control prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
-            <div class="col-xs-2 text-center">
-                <span class="schedule-week"></span>
-            </div>
-            <div class="col-xs-5 text-right">
-                <a href="#" class="btn schedule-control next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </div>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <td><p>Sun</p><p>(26/10/2014)</p></td>
-                </tr>
-            </thead>
-
-            <tr>
-                <td>10:45</td>
-            </tr>
-            <tr>
-                <td>10:45</td>
-            </tr>
-            <tr>
-                <td class="acti">10:45</td>
-            </tr>
-            <tr>
-                <td>10:45</td>
-            </tr>
-            <tr>
-                <td>10:45</td>
-            </tr>
-            <tr>
-                <td class="reserved">Reserved</td>
-            </tr>
-            <tr>
-                <td>10:45</td>
-            </tr>
-
-        </table>
-    </div><!-- schedule-container day visible-xs -->
-</div><!-- mid-content -->
+    <div class="schedule-container week hidden-xs" id="week_booking">
+        <?php require APPLICATION_PATH . '/modules/bookings/views/scripts/index/weektime.phtml'; ?>
+    </div>
+</div>

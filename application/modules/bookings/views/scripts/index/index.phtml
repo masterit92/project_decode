@@ -22,7 +22,7 @@ $list_game = $this->list_game;
                 <span>
                     <?php echo __('difficult')?>:
                     <?php for($i=0;$i<$game['game_difficult']; $i++):?>
-                    <img src="<?php echo $this->baseUrl('public/upload/difficult.png') ?>"/>
+                    <img src="<?php echo TEMPLATE_URL.'/default/default/img/difficult.png' ?>"/>
                     <?php endfor;?>
                 </span>
                 <a href="<?php echo $this->baseUrl('bookings/index/booking/id/'.$game['game_id'])?>" class="btn-book"><?php echo __('Book Now') ?></a>
