@@ -29,7 +29,7 @@ class Bookings_IndexController extends FTeam_Controller_Action {
                 $this->view->list_time = $time_model->getAllTimes(1, 1, FALSE);
                 $list_wekk_date =  $this->getWeekDate();
                 $this->view->week_date = $list_wekk_date;
-                $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')]);
+                $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')],$id_game);
                 $this->view->class_body = 'booking-detail';
             } else {
                 $this->redirect('bookings');
@@ -42,12 +42,16 @@ class Bookings_IndexController extends FTeam_Controller_Action {
         $this->_helper->layout()->disableLayout();
         $date = $this->_request->getParam('date','now');
         $action = $this->_request->getParam('action_event','next');
+        $game_id = $this->_request->getParam('game_id',0);
+        if(!$game_id){
+            echo 'false';exit();
+        }
         $time_model = new Admin_Model_Times();
         $bookings_model = new Bookings_Model_Bookings();
         $this->view->list_time = $time_model->getAllTimes(1, 1, FALSE);
         $list_wekk_date =  $this->getWeekDate($date,$action);
         $this->view->week_date = $list_wekk_date;
-        $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')]);
+        $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')],$game_id);
     }
     public function infobokingAction(){
         $this->_helper->layout()->disableLayout();
