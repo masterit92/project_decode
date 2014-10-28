@@ -68,17 +68,64 @@ class Bookings_IndexController extends FTeam_Controller_Action {
             $price_code = 'OFF_PEAK';
             if($weekend > 0){
                 $price_code = 'WEEKEND';
-            } else if(strtotime($aryData['time']) < strtotime(TIME_PRICE)){
+            } else if(strtotime($time) < strtotime(TIME_PRICE)){
                 $price_code = 'OFF_PEAK';
             }else{
                 $price_code = 'EVENING';
             }
-            $booking_model = new Bookings_Model_Bookings();
-            $this->view->price = $booking_model->getPriceForTime($price_code);
+            $price_model = new Admin_Model_Prices();
+            $this->view->price = $price_model->getPriceForTime($price_code);
             $this->view->arrData = $arr_data;
         }else{
             echo 'false';exit();
         }
+    }
+    public function addbookingAction(){
+        if($this->_request->isPost()){
+            $arr_validate = array(
+                'first_name'=> new Zend_Validate_NotEmpty(),
+                'contact_no'=> new Zend_Validate_NotEmpty(),
+                'last_name'=> new Zend_Validate_NotEmpty()
+            );
+            $gender = $this->_request->getParam('gender',-1);
+            $participants = $this->_request->getParam('participants',0);
+            $game_id = $this->_request->getParam('game_id',0);
+            $time = $this->_request->getParam('time',0);
+            $date = $this->_request->getParam('date',0);
+            $total_price = $this->_request->getParam('txt_total_price',0);
+            $email = $this->_request->getParam('email','');
+            $validate = new FTeam_Validate_MyValidate();
+            if ($validate->isValid($arr_validate) && $gender > -1 && $participants > 1 && $game_id && $time && $date && $total_price)
+            {
+                $arr_data  = $validate->getValue();
+                $arr_data['gender'] = $gender;
+                $arr_data['game_id'] = $game_id;
+                $arr_data['date'] = date('Y-m-d',  strtotime($date));
+                $arr_data['time'] = $time;
+                $arr_data['total_price'] = $total_price;
+                $arr_data['email'] = $email;
+                $email_validate = new Zend_Validate_EmailAddress();
+                if($email_validate->isValid($email)){
+                    //send mail
+                    $send_mail = new FTeam_SendMail();
+                    $send_mail->send_mail($email, 'Booking', file_get_contents('http://decode.loc:8080/bookings/index/emailtemplate'));
+                }
+                $arr_data['booking_status'] = 0;
+                $booking_model = new Bookings_Model_Bookings();
+                $result = $booking_model->addBooking($arr_data);
+                if($result){
+                    $this->_helper->FlashMessenger()->setNamespace('success')->addMessage('booking success');
+                }else{
+                    $this->_helper->FlashMessenger()->setNamespace('fail')->addMessage('booking fail');
+                }
+            }else{
+                $this->_helper->FlashMessenger()->setNamespace('fail')->addMessage('booking fail');
+            }
+        }
+        $this->redirect('bookings');
+    }
+    public function emailtemplateAction(){
+        $this->_helper->layout()->disableLayout();
     }
 
     protected function getWeekDate($date = 'now',$action='next') {
@@ -107,5 +154,5 @@ class Bookings_IndexController extends FTeam_Controller_Action {
         }
         return $arr_date;
     }
-
+    
 }

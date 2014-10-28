@@ -15,8 +15,11 @@ set_include_path(implode(PATH_SEPARATOR, array(
     dirname(__FILE__) . '/library',
     get_include_path(),
 )));
+//mail
+define('EMAIL_INFO', 'info@decode.com.vn');
+define('EMAIL_INFO_PASSWORD', '123456789');
 //http
-define('HTTP_BASE', 'http://decode.loc/');                                    
+define('HTTP_BASE', 'http://decode.loc:8080/');                                    
 //Duong dan den thu muc /public
 define('PUBLIC_PATH', realpath(dirname(__FILE__) . '/public'));
 //Duong dan den thu muc /templates

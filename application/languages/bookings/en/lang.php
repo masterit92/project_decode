@@ -41,6 +41,9 @@ return array(
     'Email Address'=>'Email Address',
     'Participants(2-5)'=>'Participants(2-5)',
     'people' =>'People',
-    ''=>'',
+    'Please fill in your details'=>'Please fill in your details',
+    'booking success'=>'Thanks you ! Booking Success.\n We will call back to you to check!',
+    'booking fail'=>'Sory ! Booking Fail! \n Please booking again.',
+    'This field is required.'=>'This field is required.',
     ''=>'',
 );

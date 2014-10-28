@@ -29,16 +29,11 @@ class Bookings_Model_Bookings extends Zend_Db_Table{
         }
         return $result;
     }
-    public function getPriceForTime($price_code = 'OFF_PEAK'){
-        $select = $this->select();
-        $select->from($this->_name);
-        $select->where('price_lang = ?', $this->_languages);
-        $select->where('price_status = ?',1);
-        $select->where('price_code = ?',$price_code);
-        $result = $this->fetchRow();
-        if (count($result)) {
-            $result = $result->toArray();
+    public function addBooking($arr_data){
+        $result = $this->insert($arr_data);
+        if($result){
+            return TRUE;
         }
-        return $result;
+        return FALSE;
     }
 }

@@ -1,6 +1,15 @@
 <?php 
 $list_game = $this->list_game;
 ?>
+<script>
+<?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        alert('<?php foreach ($flashMessenger->getMessages() as $msg): ?><?php echo __($msg) ?><?php endforeach; ?>');
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        alert('<?php foreach ($flashMessenger->getMessages() as $msg): ?><?php echo __($msg) ?><?php endforeach; ?>');
+    <?php endif; ?>
+</script>
 <div id="booking-container">
     <?php if(count($list_game) > 0):?>
     <?php foreach ($list_game as $game):?>

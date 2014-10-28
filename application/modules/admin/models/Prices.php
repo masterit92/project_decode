@@ -106,4 +106,17 @@ class Admin_Model_Prices extends Zend_Db_Table
         }
         return false;
     }
+    
+     public function getPriceForTime($price_code){
+        $select = $this->select();
+        $select->from($this->_name);
+        $select->where('price_lang = ?', $this->_languages);
+        $select->where('price_status = ?',1);
+        $select->where('price_code = ?',$price_code); 
+        $result = $this->fetchRow($select);
+        if (count($result)) {
+            $result = $result->toArray();
+        }
+        return $result;
+    }
 }

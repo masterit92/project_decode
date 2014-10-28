@@ -39,5 +39,9 @@ return array(
     'Last Name'=>'Tên',
     'Email Address'=>'Địa chỉ Email',
     'Participants(2-5)'=>'Số người tham dự(2-5)',
-    'people' =>'Người'
+    'people' =>'Người',
+    'Please fill in your details'=>'Vui lòng nhập thông tin về bạn.',
+    'booking success'=>'Cám ơn bạn! Bạn đã đặt phòng thành công.\n Chúng tôi sẽ liên lạc sớm với bạn!',
+    'booking fail'=>'Xin lỗi ! Đặt phòng không thành công! \n Bạn vui lòng đặt phòng lại.',
+    'This field is required.'=>'Trường này bắt buộc nhập.',
     );

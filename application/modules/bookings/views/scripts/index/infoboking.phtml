@@ -1,5 +1,5 @@
 <div class="left col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <form  class="form-horizontal" role="form">
+    <form  class="form-horizontal" id="booking_form" method="POST" role="form" action="<?php echo $this->baseUrl('bookings/index/addbooking') ?>">
         <?php
         $aryData = $this->arrData;
         $price = $this->price;
@@ -10,37 +10,38 @@
         }
         ?>
         <div class="col-md-6 left-left col-sm-12 col-xs-12 ">
-            <label><?php echo __('First Name') ?></label>
-            <input type="text" name="first_name" placeholder="<?php echo __('First Name') ?>"/>
-            <label><?php echo __('Contact No') ?></label>
-            <input type="text" name="contact_no" placeholder="<?php echo __('Contact No') ?>"/>
-            <label><?php echo __('Gender') ?></label>
-            <select>
-                <option value="-1" selected><?php echo __('-----Please select-----') ?></option>
+            <label><?php echo __('First Name') ?>(<span style="color: red">*</span>)</label>
+            <input type="text" name="first_name" placeholder="<?php echo __('First Name') ?>" required="required"/>
+            <label><?php echo __('Contact No') ?>(<span style="color: red">*</span>)</label>
+            <input type="text" name="contact_no" placeholder="<?php echo __('Contact No') ?>" required="required"/>
+            <label><?php echo __('Gender') ?>(<span style="color: red">*</span>)</label>
+            <select name="gender" id="gender" required="required">
+                <option value="" selected><?php echo __('-----Please select-----') ?></option>
                 <option value="1"><?php echo __('Male'); ?></option>
                 <option value="0"><?php echo __('Female'); ?></option>
 
             </select>
         </div>
         <div class="col-md-6 left-right col-sm-12 col-xs-12">
-            <label><?php echo __('Last Name') ?></label>
-            <input type="text" name="last_name" placeholder="<?php echo __('Last Name') ?>"/>
+            <label><?php echo __('Last Name') ?>(<span style="color: red">*</span>)</label>
+            <input type="text" name="last_name" placeholder="<?php echo __('Last Name') ?>" required="required"/>
             <label><?php echo __('Email Address') ?></label>
             <input type="text" name="email" placeholder="<?php echo __('Email Address') ?>"/>
-            <label><?php echo __('Participants(2-5)') ?></label>
-            <select id="num-player" name="participants">
-                <option value="0" selected><?php echo __('-----Please select-----') ?></option>
-                <option value="2">2 <?php echo __('people')?>.</option>
-                <option value="3">3 <?php echo __('people')?>.</option>
-                <option value="4">4 <?php echo __('people')?>.</option>
-                <option value="5">5 <?php echo __('people')?>.</option>
+            <label><?php echo __('Participants(2-5)') ?>(<span style="color: red">*</span>)</label>
+            <select id="num-player" name="participants" required="required">
+                <option value="" selected><?php echo __('-----Please select-----') ?></option>
+                <option value="2">2 <?php echo __('people') ?>.</option>
+                <option value="3">3 <?php echo __('people') ?>.</option>
+                <option value="4">4 <?php echo __('people') ?>.</option>
+                <option value="5">5 <?php echo __('people') ?>.</option>
             </select>
-            <input type="submit" value="<?php echo __('Booking')?>"/>
+            <input type="submit" value="<?php echo __('Booking') ?>"/>
         </div>
         <div style="display: none">
             <input type="hidden" name="game_id" value="<?php echo $aryData['game_id']; ?>">
             <input type="hidden" name="time" value="<?php echo $aryData['time'] ?>"/>
             <input type="hidden" name="date" value="<?php echo $aryData['date'] ?>"/>
+            <input type="hidden" name="txt_total_price" id="txt_total_price" value=""/>
         </div>
     </form>
 </div>
@@ -50,9 +51,9 @@
         <ul>
             <li><span><?php echo __('Game') ?> : <em id="bf_sum_game_name"></em></span>
             <li>
-            <li><span><?php echo __('Date') . ' : '.date($date_format,  strtotime($aryData['date'])) ?></span>
+            <li><span><?php echo __('Date') . ' : ' . date($date_format, strtotime($aryData['date'])) ?></span>
             <li>
-            <li><span><?php echo __('Time') . ' : '. $aryData['time'] ?></span>
+            <li><span><?php echo __('Time') . ' : ' . $aryData['time'] ?></span>
             <li>
             <li><span><?php echo __('Participant') ?> : <em id="bf_num_player"></em></span>
             <li>
@@ -64,16 +65,29 @@
 
 </div>
 <script type="text/javascript" language="JavaScript">
-    jQuery(document).ready(function ($) {
-      var price = <?php echo $price?>;
-      $('#bf_sum_game_name').text($('#game').text());
-      $('#num-player').change(function (){
-          var player = $(this).val();
-          if(player > 0){
-            $('#bf_num_player').text(player+' <?php echo __('people')?>');
-          }else{
-              $('#bf_num_player').text('');
-          }
-      });
+    jQuery(document).ready(function($) {
+        var price = <?php echo $price['price_value'] ?>;
+        $('#bf_sum_game_name').text($('#game').text());
+        $('#num-player').change(function() {
+            var player = $(this).val();
+            if (player > 0) {
+                $('#bf_num_player').text(player + ' <?php echo __('people') ?>');
+                var total_price = price * player;
+                $('#total_price').text(total_price + ' VNĐ');
+                $('#txt_total_price').attr('value', total_price);
+            } else {
+                $('#total_price').text('');
+                $('#bf_num_player').text('');
+            }
+        });
+//        $('#booking_form').validate({
+//            rules: {
+//                first_name: "required",
+//                last_name: "required",
+//                contact_no:"required",
+//                gender:"required",
+//                participants:"required"
+//            }
+//        });
     });
 </script>

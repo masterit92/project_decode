@@ -78,7 +78,7 @@ $arr_date_key = array(
                         $weekend = 1;
                     }
                     ?>
-                    <?php if ($exist_booking): ?>
+                    <?php if ($exist_booking && $class_a !== ''): ?>
                         <td class="reserved"><?php echo __('Reserved')?></td>
                     <?php else: ?>
                         <td class="<?php echo $class_td ?>">
