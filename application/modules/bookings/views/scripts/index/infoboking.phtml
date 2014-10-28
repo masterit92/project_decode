@@ -2,6 +2,7 @@
     <form  class="form-horizontal" role="form">
         <?php
         $aryData = $this->arrData;
+        $price = $this->price;
         $date_format = 'd/m/Y';
         $languages = New Zend_Session_Namespace('languages');
         if ($languages->languages === 'en') {
@@ -64,6 +65,7 @@
 </div>
 <script type="text/javascript" language="JavaScript">
     jQuery(document).ready(function ($) {
+      var price = <?php echo $price?>;
       $('#bf_sum_game_name').text($('#game').text());
       $('#num-player').change(function (){
           var player = $(this).val();
