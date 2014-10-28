@@ -59,12 +59,12 @@ $arr_date_key = array(
                 <?php for ($i = 0; $i < 7; $i++): ?>
                     <?php
                     $class_td = '';
-                    $href = '';
+                    $class_a = '';
                     $__date = $arr_week_date[$arr_date_key[$i]];
                     if (strtotime($__date . ' ' . $time_value) < $curent_time) {
                         $class_td = 'acti';
-                    } else {
-                        $href = "href='{$this->baseUrl('bookings/index/information')}'";
+                    }else{
+                        $class_a='booking_info';
                     }
                     $exist_booking = FALSE;
                     foreach ($list_bookings as $booking) {
@@ -78,7 +78,7 @@ $arr_date_key = array(
                         <td class="reserved"><?php echo __('Reserved')?></td>
                     <?php else: ?>
                         <td class="<?php echo $class_td ?>">
-                            <a <?php echo $href; ?>><?php echo $time_value ?></a>
+                            <a class="<?php echo $class_a ?>" data_date="<?php echo $__date?>" data_time="<?php echo $time_value?>"><?php echo $time_value ?></a>
                         </td>
                     <?php endif; ?>
                 <?php endfor; ?>
@@ -98,6 +98,14 @@ $arr_date_key = array(
             load_week_booking(date, 'next');
         });
         dsp_prev_next(get_current_date(), get_end_date_week());
+        
+        //boking info
+        $('.<?php echo $class_a?>').click(function (){
+            var data_date = $(this).attr('data_date');
+            var data_time = $(this).attr('data_time');
+            var game_id = $('#game').attr('data_id');
+            load_info_booking(data_date,data_time,game_id);
+        });
     });
     function dsp_prev_next(date_cur, date_week) {
         if (date_cur === $('.prev').attr('data-compare')) {
@@ -127,20 +135,51 @@ $arr_date_key = array(
                 + date_time.getFullYear();
         return week_end_date;
     }
-    function load_week_booking(date_data, action)
+    function load_info_booking(date_data, data_time,game_id)
     {
+        var html_before = $('#week_booking').html();;
         $.ajax({
             type: 'POST',
-            url: '<?php echo HTTP_BASE . $this->baseUrl('bookings/index/weektime/') ?>',
-            data: {date: date_data, action_event: action},
+            url: '<?php echo HTTP_BASE . $this->baseUrl('bookings/index/infoboking/') ?>',
+            data: {date_data: date_data, time_data: data_time, game_id:game_id},
             beforeSend: function(xhr) {
+                $('.desc-booking-detail').text('<?php echo __('Please fill in your details') ?>');
                 var html = '<img width="100%" height="100%" src="<?php echo TEMPLATE_URL . '/default/default/img/loading.gif' ?>"/>';
                 $('#week_booking').html(html);
             },
             success: function(data, textStatus, jqXHR) {
+                $('.desc-booking-detail').text('<?php echo __('Please fill in your details') ?>');
+                console.log(data);
+                if(data !== 'false'){
+                    $('#week_booking').html(data);
+                }else{
+                    alert('<?php echo __('error data')?>');
+                    $('#week_booking').html(html_before);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('.desc-booking-detail').text('<?php echo __('Please fill in your details') ?>');
+                $('#week_booking').html('<h2><?php echo __('error data') ?></h2>');
+            }
+        });
+    }
+    function load_week_booking(date_data, action)
+    {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo HTTP_BASE . $this->baseUrl('bookings/index/weektime/')?>',
+            data: {date: date_data, action_event: action},
+            beforeSend: function(xhr) {
+                $('.desc-booking-detail').text('<?php echo __('Please select your perferred time') ?>');
+                var html = '<img width="100%" height="100%" src="<?php echo TEMPLATE_URL . '/default/default/img/loading.gif' ?>"/>';
+                $('#week_booking').html(html);
+            },
+            success: function(data, textStatus, jqXHR) {
+                $('.desc-booking-detail').text('<?php echo __('Please select your perferred time') ?>');
                 $('#week_booking').html(data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
+                $('.desc-booking-detail').text('<?php echo __('Please select your perferred time') ?>');
                 $('#week_booking').html('<h2><?php echo __('error data') ?></h2>');
             }
         });

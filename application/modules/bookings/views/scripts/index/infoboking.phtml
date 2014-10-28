@@ -1,9 +1,8 @@
 <?php
-$aryData = $this->aryData;
+$aryData = $this->arrData;
 ?>
 <div class="left col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <form>
-        <quote><?php echo __('Please fill in your details') ?></quote>
+    <form  class="form-horizontal" role="form">
         <div class="col-md-6 left-left col-sm-12 col-xs-12 ">
             <label><?php echo __('First Name') ?></label>
             <input type="text"/>
@@ -11,14 +10,13 @@ $aryData = $this->aryData;
             <input type="text"/>
             <label><?php echo __('Gender') ?></label>
             <select>
-                <option value="0" selected><?php echo __('-----Please select-----') ?></option>
+                <option value="-1" selected><?php echo __('-----Please select-----') ?></option>
                 <option value="1"><?php echo __('Male'); ?></option>
-                <option value="2"><?php echo __('Female'); ?></option>
+                <option value="0"><?php echo __('Female'); ?></option>
 
             </select>
         </div>
         <div class="col-md-6 left-right col-sm-12 col-xs-12">
-
             <label><?php echo __('Last Name') ?></label>
             <input type="text"/>
             <label><?php echo __('Email Address') ?></label>
@@ -34,9 +32,9 @@ $aryData = $this->aryData;
             <input type="submit" value="SUBMIT"/>
         </div>
         <div style="display: none">
-            <input type="hidden" name="game_id" value="<?php echo $aryData['gameId']; ?>">
+            <input type="hidden" name="game_id" value="<?php echo $aryData['game_id']; ?>">
             <input type="hidden" name="time" value="<?php echo $aryData['time'] ?>"/>
-            <input type="hidden" name="date" value="<?php echo $aryData['day'] ?>"/>
+            <input type="hidden" name="date" value="<?php echo $aryData['date'] ?>"/>
         </div>
     </form>
 </div>
@@ -46,7 +44,7 @@ $aryData = $this->aryData;
         <ul>
             <li><span><?php echo __('Game: ') ?><em id="bf_sum_game_name"></em></span>
             <li>
-            <li><span><?php echo __('Date: ') . $aryData['day'] ?></span>
+            <li><span><?php echo __('Date: ') . $aryData['date'] ?></span>
             <li>
             <li><span><?php echo __('Time: ') . $aryData['time'] ?></span>
             <li>
@@ -61,9 +59,6 @@ $aryData = $this->aryData;
 </div>
 <script type="text/javascript" language="JavaScript">
     jQuery(document).ready(function ($) {
-        $('#bf_sum_game_name').text($('#td-game-name').text());
-        $('#num-player').on('change', function () {
-            $('#bf_num_player').text($(this).val());
-        });
+      $('#bf_sum_game_name').text($('#game').text());
     });
 </script>

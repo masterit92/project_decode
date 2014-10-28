@@ -49,6 +49,22 @@ class Bookings_IndexController extends FTeam_Controller_Action {
         $this->view->week_date = $list_wekk_date;
         $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')]);
     }
+    public function infobokingAction(){
+        $this->_helper->layout()->disableLayout();
+        $game_id = $this->_request->getParam('game_id',0);
+        $date = $this->_request->getParam('date_data',0);
+        $time = $this->_request->getParam('time_data',0);
+        if($time && $game_id && $date){
+            $arr_data = array(
+                'game_id'=>$game_id,
+                'date'=>$date,
+                'time'=>$time
+            );
+            $this->view->arrData = $arr_data;
+        }else{
+            echo 'false';exit();
+        }
+    }
 
     protected function getWeekDate($date = 'now',$action='next') {
         $arr_date_key = array(
