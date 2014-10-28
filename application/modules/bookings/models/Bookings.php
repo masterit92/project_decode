@@ -8,13 +8,14 @@ class Bookings_Model_Bookings extends Zend_Db_Table{
     {
         parent::__construct($config, $definition);
     }
-    public function getBookingsCurentDateTime($start_date = 'now -7 day', $end_date = 'now +7 day')
+    public function getBookingsCurentDateTime($start_date = 'now -7 day', $end_date = 'now +7 day', $game_id)
     {
         $start_date = date('Y-m-d', strtotime($start_date));
         $end_date = date('Y-m-d', strtotime($end_date));
         $select=$this->select();
         $select->from($this->_name);
         $select->where('booking_status = ?', 1);
+        $select->where('game_id = ?', $game_id);
         $select->where("date BETWEEN '$start_date'  AND '$end_date'");
         $result = $this->fetchAll($select);
         if (count($result))

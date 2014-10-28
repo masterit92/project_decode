@@ -1,13 +1,18 @@
 <?php
 $aryData = $this->arrData;
+$date_format = 'd/m/Y';
+$languages = New Zend_Session_Namespace('languages');
+if ($languages->languages === 'en') {
+    $date_format = 'm/d/Y';
+}
 ?>
 <div class="left col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <form  class="form-horizontal" role="form">
         <div class="col-md-6 left-left col-sm-12 col-xs-12 ">
             <label><?php echo __('First Name') ?></label>
-            <input type="text"/>
+            <input type="text" name="first_name" placeholder="<?php echo __('First Name') ?>"/>
             <label><?php echo __('Contact No') ?></label>
-            <input type="text"/>
+            <input type="text" name="contact_no" placeholder="<?php echo __('Contact No') ?>"/>
             <label><?php echo __('Gender') ?></label>
             <select>
                 <option value="-1" selected><?php echo __('-----Please select-----') ?></option>
@@ -18,18 +23,18 @@ $aryData = $this->arrData;
         </div>
         <div class="col-md-6 left-right col-sm-12 col-xs-12">
             <label><?php echo __('Last Name') ?></label>
-            <input type="text"/>
+            <input type="text" name="last_name" placeholder="<?php echo __('Last Name') ?>"/>
             <label><?php echo __('Email Address') ?></label>
-            <input type="text"/>
+            <input type="text" name="email" placeholder="<?php echo __('Email Address') ?>"/>
             <label><?php echo __('Participants(2-5)') ?></label>
-            <select id="num-player">
+            <select id="num-player" name="participants">
                 <option value="0" selected><?php echo __('-----Please select-----') ?></option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <input type="submit" value="SUBMIT"/>
+            <input type="submit" value="<?php echo __('Booking')?>"/>
         </div>
         <div style="display: none">
             <input type="hidden" name="game_id" value="<?php echo $aryData['game_id']; ?>">
@@ -42,18 +47,18 @@ $aryData = $this->arrData;
     <div class="info">
         <h4><?php echo __('SUMMARY') ?></h4>
         <ul>
-            <li><span><?php echo __('Game: ') ?><em id="bf_sum_game_name"></em></span>
+            <li><span><?php echo __('Game') ?> : <em id="bf_sum_game_name"></em></span>
             <li>
-            <li><span><?php echo __('Date: ') . $aryData['date'] ?></span>
+            <li><span><?php echo __('Date') . ' : '.date($date_format,  strtotime($aryData['date'])) ?></span>
             <li>
-            <li><span><?php echo __('Time: ') . $aryData['time'] ?></span>
+            <li><span><?php echo __('Time') . ' : '. $aryData['time'] ?></span>
             <li>
-            <li><span><?php echo __('Participant: ') ?><em id="bf_num_player"></em></span>
+            <li><span><?php echo __('Participant') ?> : <em id="bf_num_player"></em></span>
             <li>
-            <li><span><?php echo __("Total price: ") ?></span>
+            <li><span><?php echo __("Total price") ?> : <em id="total_price"></em></span>
             <li>
         </ul>
-        <i><?php echo __("*Please arive 10 mins before you booking time") ?></i>
+        <i style="color: red"><?php echo __("*Please arrive 10 mins before you booking time") ?></i>
     </div>
 
 </div>
