@@ -16,7 +16,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 //http
-define('HTTP_BASE', 'http://decode.loc');                                    
+define('HTTP_BASE', 'http://decode.loc/');                                    
 //Duong dan den thu muc /public
 define('PUBLIC_PATH', realpath(dirname(__FILE__) . '/public'));
 //Duong dan den thu muc /templates

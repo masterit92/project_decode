@@ -16,6 +16,10 @@ ul {
     list-style: none;
 }
 
+a {
+    color: #fff;
+}
+
 a:hover {
     text-decoration: none;
     color: #fff;
@@ -271,12 +275,7 @@ header .header-content .flag-language ul li {
     min-height: 100px;
 }
 
-.booking-detail .top-content .flag-language {
-    list-style: none;
-    position: absolute;
-    top: 188px;
-    right: 98px;
-}
+
 
 .booking-detail .mid-content h4{
     font-size: 28px;
@@ -287,7 +286,7 @@ header .header-content .flag-language ul li {
 }
 
 .booking-detail .mid-content .desc-booking-detail {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin: 0px;
     text-align: left;
@@ -355,11 +354,11 @@ header .header-content .flag-language ul li {
 
 
 /* ---------------------FAQ---------------------- */
-.faq header, .contact header,.booking-form header {
+.faq header, .contact header,.booking-detail header {
     min-height: 100px;
 }
 
-.faq .content .top-content,.contact .content .top-content, .booking-form .content .top-content {
+.faq .content .top-content,.contact .content .top-content, .booking-detail .content .top-content {
     position: relative;
 }
 
@@ -385,7 +384,7 @@ header .header-content .flag-language ul li {
     right:208px;
 }
 
-.faq .content .flag-language, .contact .content .flag-language, .booking-form .flag-language {
+.faq .content .flag-language, .contact .content .flag-language, .booking-detail .flag-language {
     position: absolute;
     top: 0px;
     right: 0px;
@@ -414,25 +413,25 @@ header .header-content .flag-language ul li {
 }
 
 /* ---------------------CONTACT---------------------- */
-.contact .mid-content form, .booking-form .mid-content form {
+.contact .mid-content form, .booking-detail {
     margin-top: 54px;
 }
 
-.contact .mid-content form label,.booking-form .mid-content form label {
+.contact .mid-content form label,.booking-detail .mid-content form label {
     display: block;
     font-size: 18px;
     font-weight: bold;
     margin-top: 24px;
 }
 
-.contact .mid-content form input, .booking-form .mid-content form input {
+.contact .mid-content form input, .booking-detail .mid-content form input {
     max-width: 100%;
     width: 100%;
     color: #000;
     font-weight: normal;
     font-size: 16px;
 }
-.booking-form .mid-content form select{
+.booking-detail .mid-content form select{
     max-width: 100%;
     width: 100%;
     color: #000;
@@ -451,7 +450,7 @@ header .header-content .flag-language ul li {
     font-size: 16px;
 }
 
-.contact .mid-content form input[type=submit], .booking-form .mid-content form input[type=submit] {
+.contact .mid-content form input[type=submit], .booking-detail .mid-content form input[type=submit] {
     max-width: 161px;
     min-height: 38px;
     display: block;
@@ -462,7 +461,7 @@ header .header-content .flag-language ul li {
     font-weight: bold;
 }
 
-.contact .content .mid-content h4,.booking-form .content .mid-content h4 {
+.contact .content .mid-content h4,.booking-detail .content .mid-content h4 {
     font-size: 36px;
     color: red;
     font-weight: bold;
@@ -531,28 +530,35 @@ header .header-content .flag-language ul li {
 
 }
 /* ---------------------BOOKING-FORM---------------------- */
-.booking-form  h4 {
+.booking-detail  h4 {
     margin: 0px;
     padding: 0px;
 }
-.booking-form  quote {
+.booking-detail  .desc-booking-detail {
     font-size: 20px;
     font-weight: bold;
     display: block;
 }
 
-.booking-form ul li span, .booking-form i {
+.booking-detail .info h4{
+    margin-top:0px;
+}
+
+.booking-detail .info ul {
+    padding-left: 0px;
+}
+
+.booking-detail ul li span, .booking-detail i {
     font-size: 18px;
 }
 
-.booking-form .mid-content form input[type=submit] {
+.booking-detail .mid-content form input[type=submit] {
     color: #fff;
     font-weight: bold;
     margin-top: 20px;
 }
 
-.contact .content .mid-content .right, .booking-form .content .mid-content .right {
-    margin-top: 175px;
+.contact .content .mid-content .right, .booking-detail .content .mid-content .right {
     background: url('http://localhost/test/decode/_/component/images/Decode/background/bg-item.png');
     padding: 32px 18px;
     overflow: hidden;
