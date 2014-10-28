@@ -55,6 +55,8 @@ $prive_code = array(
     'EVENING' => 'evening',
     'WEEKEND' => 'weekend');
 define('PRICE_CODE', serialize($prive_code));
+//time
+define('TIME_PRICE', '17:00');
 
 //option group code
 //general settings

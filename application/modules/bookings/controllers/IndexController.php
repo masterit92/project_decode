@@ -58,12 +58,23 @@ class Bookings_IndexController extends FTeam_Controller_Action {
         $game_id = $this->_request->getParam('game_id',0);
         $date = $this->_request->getParam('date_data',0);
         $time = $this->_request->getParam('time_data',0);
+        $weekend = $this->_request->getParam('weekend',0);
         if($time && $game_id && $date){
             $arr_data = array(
                 'game_id'=>$game_id,
                 'date'=>$date,
                 'time'=>$time
             );
+            $price_code = 'OFF_PEAK';
+            if($weekend > 0){
+                $price_code = 'WEEKEND';
+            } else if(strtotime($aryData['time']) < strtotime(TIME_PRICE)){
+                $price_code = 'OFF_PEAK';
+            }else{
+                $price_code = 'EVENING';
+            }
+            $booking_model = new Bookings_Model_Bookings();
+            $this->view->price = $booking_model->getPriceForTime($price_code);
             $this->view->arrData = $arr_data;
         }else{
             echo 'false';exit();
