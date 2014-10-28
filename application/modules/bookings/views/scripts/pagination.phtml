@@ -30,18 +30,13 @@ foreach ($this->pagesInRange as $key)
 
 $page = __('page') . ' ' . $this->current . ' ' . __('of') . ' ' . $this->last;
 ?>
-<div class="div-pagination pull-right">
+<div class="div-pagination">
     <ul class="pagination">
         <li><a href="<?php echo $linkStart; ?>" title="<?php echo __('start')?>"><?php echo __('start') ?></a></li>
-        <li><a href="<?php echo $linkPrevious; ?>" title="<?php echo __('prev')?>"><?php echo __('prev') ?></a></li>
+        <li><a href="<?php echo $linkPrevious; ?>" title="<?php echo __('prev')?>"><?php echo __('&lt') ?></a></li>
         <?php echo $strPage ?>
-        <li><a href="<?php echo $linkNext; ?>" title="<?php echo __('next')?>"><?php echo __('next'); ?></a></li>
+        <li><a href="<?php echo $linkNext; ?>" title="<?php echo __('next')?>"><?php echo __('&gt'); ?></a></li>
         <li><a href="<?php echo $linkEnd; ?>" title="<?php echo __('end')?>"><?php echo __('end') ?></a></li>
-        <li><?php echo $page ?></li>
+<!--        <li>--><?php //echo $page ?><!--</li>-->
     </ul>    
 </div>
-<style>
-    .current_page{
-        background: #a69a9a !important;
-    }
-</style>

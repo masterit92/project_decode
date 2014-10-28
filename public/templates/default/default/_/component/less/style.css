@@ -212,6 +212,38 @@ header .header-content .flag-language ul li {
     text-transform: uppercase;
 }
 
+.booking div.div-pagination {
+    max-width: 300px;
+    margin: auto;
+}
+
+.booking ul.pagination {
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.booking ul.pagination li a {
+    background: none;
+    border: none;
+    color: #fff;
+    background: url('../images/Decode/background/bg-item.png');
+    margin: 0px 5px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+}
+
+a.current_page {
+    background: none;
+    color: red !important;
+}
+
+.booking ul.pagination li a:hover {
+    background: none;
+    color: red;
+    font-weight: bold;
+}
+
 .booking .item-booking a.btn-book {
     display: block;
     width: 181px;
