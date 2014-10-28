@@ -29,10 +29,10 @@
             <label><?php echo __('Participants(2-5)') ?></label>
             <select id="num-player" name="participants">
                 <option value="0" selected><?php echo __('-----Please select-----') ?></option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="2">2 <?php echo __('people')?>.</option>
+                <option value="3">3 <?php echo __('people')?>.</option>
+                <option value="4">4 <?php echo __('people')?>.</option>
+                <option value="5">5 <?php echo __('people')?>.</option>
             </select>
             <input type="submit" value="<?php echo __('Booking')?>"/>
         </div>
@@ -65,5 +65,13 @@
 <script type="text/javascript" language="JavaScript">
     jQuery(document).ready(function ($) {
       $('#bf_sum_game_name').text($('#game').text());
+      $('#num-player').change(function (){
+          var player = $(this).val();
+          if(player > 0){
+            $('#bf_num_player').text(player+' <?php echo __('people')?>');
+          }else{
+              $('#bf_num_player').text('');
+          }
+      });
     });
 </script>
