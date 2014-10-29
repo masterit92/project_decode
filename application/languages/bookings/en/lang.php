@@ -45,5 +45,7 @@ return array(
     'booking success'=>'Thanks you ! Booking Success.\n We will call back to you to check!',
     'booking fail'=>'Sory ! Booking Fail! \n Please booking again.',
     'This field is required.'=>'This field is required.',
-    ''=>'',
+    ////
+    'bookings'=>'Bookings',
+    'list bookings'=>'List Bookings',
 );

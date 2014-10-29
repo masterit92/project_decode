@@ -1,0 +1,234 @@
+<?php
+$list_bookings = $this->list_bookings;
+$date_format = 'd/m/Y';
+$languages = New Zend_Session_Namespace('languages');
+if ($languages->languages === 'en') {
+    $date_format = 'm/d/Y';
+}
+?>
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('bookings') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('list bookings') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="javascript:void(0)" class="bread-current"><?php echo __('bookings') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        <div class="alert alert-success">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        <div class="alert alert-warning">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div> <!--/ Page heading ends -->
+<div class="matter">
+    <div class="container">
+        <!--search form-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget wred">
+                    <div class="widget-head">
+                        <div class="pull-left"><?php echo __('Fillter') ?></div>
+                        <div class="widget-icons pull-right">
+                            <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="padd">
+                            <hr />
+                            <!-- Form starts.  -->
+                            <form class="form-horizontal" role="form" method="POST" action="">
+                                <!--game and participants-->
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('games') ?></label>
+                                    <div class="col-md-3">
+                                        <select class="form-control">
+                                            <option>12</option>
+                                            <option>12</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-md-2 control-label"><?php echo __('participants') ?></label>
+                                    <div class="col-md-3">
+                                        <select class="form-control">
+                                            <option>12</option>
+                                            <option>12</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                 <!--end game and participants-->
+                                <!--date booking and date log-->
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('date booking') ?></label>
+                                    <div class="col-md-3 input-append datetimepicker" >
+                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <span class="add-on">
+                                            &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                    <label class="col-md-2 control-label"><?php echo __('booking log') ?></label>
+                                    <div class="col-md-4 input-append datetimepicker" >
+                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <span class="add-on">
+                                            &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-3 input-append datetimepicker" >
+                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <span class="add-on">
+                                            &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-3 input-append datetimepicker" >
+                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <span class="add-on">
+                                            &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--end date booking and date log-->
+                                <!--time and status-->
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('time booking')?></label>
+                                    <div class="col-md-3 input-append timepicker" >
+                                        <input data-format="hh:mm" class="picker" type="text" readonly="true">
+                                        <span class="add-on">
+                                            &nbsp;<i data-time-icon="fa fa-clock-o" class="fa fa-clock-o"></i>
+                                        </span>
+                                    </div>
+                                    <label class="col-md-2 control-label"><?php echo __('status')?></label>
+                                    <div class="col-md-3" >
+                                        <select class="form-control">
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"></label>
+                                    <div class="col-md-3 input-append timepicker" >
+                                        <input data-format="hh:mm" class="picker" type="text" readonly="true">
+                                        <span class="add-on">
+                                            &nbsp;<i data-time-icon="fa fa-clock-o" class="fa fa-clock-o"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--end time and status-->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-8">
+                                        <input type="submit" class="btn btn-success" value="<?php echo __('Fillter') ?>"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end search form-->
+        <!--list-->
+        <form method="POST" action="">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="widget wred">
+                        <div class="widget-head">
+                            <div class="pull-left"><?php echo __('list bookings') ?></div>
+                            <div class="widget-icons pull-right">
+                                <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="widget-content">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" name="checkall" id="checkall"/></th>
+                                        <th><?php echo __('full name') ?></th>
+                                        <th><?php echo __('game') ?></th>
+                                        <th><?php echo __('participants') ?></th>
+                                        <th><?php echo __('date booking') ?></th>
+                                        <th><?php echo __('time booking') ?></th>
+                                        <th><?php echo __('booking log') ?></th>
+                                        <th><?php echo __('status') ?></th>
+                                        <th><?php echo __('action') ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (count($list_bookings) > 0): ?>
+                                        <?php foreach ($list_bookings as $booking): ?>
+                                            <tr>
+                                                <td><input type="checkbox" name="cb_bookings[]" class="cb_booking"/></td>
+                                                <td><?php echo $booking['first_name'] . ' ' . $booking['last_name'] ?></td>
+                                                <td><?php echo $booking['game_name'] ?></td>
+                                                <td><?php echo $booking['participants'] ?></td>
+                                                <td><?php echo date($date_format, strtotime($booking['date'])) ?></td>
+                                                <td><?php echo date('H:i', strtotime($booking['time'])) ?></td>
+                                                <td><?php echo date(' H:i ' . $date_format, $booking['booking_log']) ?></td>
+                                                <td>
+                                                    <?php if ($booking['booking_status'] == 1): ?>
+                                                        <span class="label label-success"><?php echo __('booking') ?></span>
+                                                    <?php elseif ($booking['booking_status'] == 2): ?>
+                                                        <span class="label label-important"><?php echo __('cancel') ?></span>
+                                                    <?php else: ?>
+                                                        <span class="label btn-warning"><?php echo __('pending') ?></span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-sm btn-warning"  title="<?php echo __('edit') ?>" href="<?php echo $this->baseUrl('admin/bookings/edit/id/') . $booking['booking_id']; ?>">
+                                                        <i class="fa fa-pencil"></i> 
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="8"><?php echo __('no data') ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <?php if (count($list_bookings) > 0): ?>
+                            <div class="widget-foot">
+                                <button type="submit" class="btn btn-sm btn-danger"  onclick="return confirm('<?php echo __('are you sure?') ?>')">
+                                    <i class="fa fa-times"></i> <?php echo __('Delete') ?>
+                                </button>
+                                <?php
+                                $currentUrl = $this->baseUrl($this->currentController . '/index');
+                                echo $this->paginationControl($this->pagination, 'Sliding', 'pagination.phtml', array('currentUrl' => $currentUrl));
+                                ?>
+                                <div class="clearfix"></div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

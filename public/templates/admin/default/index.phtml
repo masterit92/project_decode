@@ -23,3 +23,24 @@
     </body>
 </html>
  <?php echo $this->headScript() ?>
+<script>
+//    $(document).ready(function() {
+        /* Date picker */
+        $(function() {
+            $('.datetimepicker').datetimepicker({
+                pickTime: false
+            });
+        });
+        $(function() {
+        $('#datetimepicker2,.timepicker').datetimepicker({
+            pickDate: false
+        });
+        
+//        $(function() {
+//        $('.timepicker').datetimepicker({
+//            pickDate: false
+//        });
+        
+    });
+//    });
+</script>
