@@ -246,14 +246,13 @@ a.current_page {
 
 .booking .item-booking a.btn-book {
     display: block;
-    width: 181px;
+    width: 161px;
     height: 38px;
-    float: right;
     margin-top: 30px;
-    background: url('../images/Decode/icon/book-now.png') no-repeat;
-    text-indent: 100%;
-    white-space: nowrap;
-    overflow: hidden;
+    background: url('../images/Decode/icon/button-submit.png') no-repeat;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .booking .content .bot-content ul {
