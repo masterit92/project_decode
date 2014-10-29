@@ -12,5 +12,6 @@ return array(
    'The game'=>'The game',
    'Contact'=>'Contact',
    'FAQs'=>'FAQs',
-   'Booking'=>'Booking'
+   'Booking'=>'Booking',
+    'format phone number error'=>'Phone number not format.'
 );

@@ -13,7 +13,7 @@
             <label><?php echo __('First Name') ?>(<span style="color: red">*</span>)</label>
             <input type="text" name="first_name" placeholder="<?php echo __('First Name') ?>" required="required"/>
             <label><?php echo __('Contact No') ?>(<span style="color: red">*</span>)</label>
-            <input type="text" name="contact_no" placeholder="<?php echo __('Contact No') ?>" required="required"/>
+            <input type="text" name="contact_no" pattern="[0][0-9]{10}" placeholder="<?php echo __('Contact No') ?>" required="required" title="<?php echo __('format phone number error')?>"/>
             <label><?php echo __('Gender') ?>(<span style="color: red">*</span>)</label>
             <select name="gender" id="gender" required="required">
                 <option value="" selected><?php echo __('-----Please select-----') ?></option>
@@ -26,7 +26,7 @@
             <label><?php echo __('Last Name') ?>(<span style="color: red">*</span>)</label>
             <input type="text" name="last_name" placeholder="<?php echo __('Last Name') ?>" required="required"/>
             <label><?php echo __('Email Address') ?></label>
-            <input type="text" name="email" placeholder="<?php echo __('Email Address') ?>"/>
+            <input type="email" name="email" placeholder="<?php echo __('Email Address') ?>"/>
             <label><?php echo __('Participants(2-5)') ?>(<span style="color: red">*</span>)</label>
             <select id="num-player" name="participants" required="required">
                 <option value="" selected><?php echo __('-----Please select-----') ?></option>

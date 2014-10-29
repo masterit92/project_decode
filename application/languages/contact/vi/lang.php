@@ -4,7 +4,7 @@ return array(
     'contact'=>'Liên hệ',
     'first name'=>'Họ',
     'last name'=>'Tên',
-    'contact no'=>'Địa chỉ',
+    'contact no'=>'SĐT',
     'email address'=>'Email',
     'reasons to contact'=>'Tin nhắn',
     'SUBMIT'=>'Gửi',
@@ -12,5 +12,6 @@ return array(
    'The game'=>'Trò chơi',
    'Contact'=>'Liên hệ',
    'FAQs'=>'Hỏi đáp',
-   'Booking'=>'Đặt phòng'
+   'Booking'=>'Đặt phòng',
+    'format phone number error'=>'SĐT không đúng định dạng.'
 );

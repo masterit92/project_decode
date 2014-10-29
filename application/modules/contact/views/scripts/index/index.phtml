@@ -1,20 +1,24 @@
+<script>
+<?php if(isset($this->error) && is_array($this->error)):?>
+    alert('<?php foreach ($this->error as $error): echo $error.'\n'?><?php endforeach;?>');
+<?php endif;?>
+</script>
 <div class="left col-md-6">
     <form class="form-horizontal" role="form" action="<?php echo $this->baseUrl('contact/index'); ?>" method="post">
         <div class="col-md-6 left-left">
             <h4><?php echo __('contact') ?></h4>
-            <label><?php echo __('first name') ?></label>
-            <input type="text" class="form-control" name="contacts_ho" value="">
+            <label><?php echo __('first name') ?>(<span style="color: red">*</span>)</label>
+            <input type="text" class="form-control" name="first_name" value="" required="required" placeholder="<?php echo __('first name') ?>">
             <label><?php echo __('contact no') ?></label>
-            <input type="text" class="form-control" name="contacts_diachi" value="">
-            <label><?php echo __('reasons to contact') ?></label>
+            <input type="text" pattern="[0][0-9]{6}" class="form-control" name="address" value="" placeholder="<?php echo __('contact no') ?>" title="<?php echo __('format phone number error').'(0987234567)'?>">
+            <label><?php echo __('reasons to contact') ?>(<span style="color: red">*</span>)</label>
         </div>
         <div class="col-md-6 left-right">
-
-            <label><?php echo __('last name') ?></label>
-            <input type="text" class="form-control" name="contacts_ten" value="">
-            <label><?php echo __('email address') ?></label>
-            <input type="text" class="form-control" name="contacts_email" value="">
-            <textarea class="form-control"name="contacts_tinnhan"></textarea>
+            <label><?php echo __('last name') ?>(<span style="color: red">*</span>)</label>
+            <input type="text" class="form-control" name="last_name" value="" required="required" placeholder="<?php echo __('last name') ?>">
+            <label><?php echo __('email address') ?>(<span style="color: red">*</span>)</label>
+            <input type="email" class="form-control" name="email" value="" required="required" placeholder="<?php echo __('email address') ?>">
+            <textarea class="form-control"name="mesages" placeholder="<?php echo __('reasons to contact') ?>"></textarea>
             <input type="submit" value="<?php echo __('SUBMIT') ?>"/>
         </div>
     </form>

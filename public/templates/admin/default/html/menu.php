@@ -17,8 +17,7 @@
                     <span class="pull-right"><i class="fa fa-angle-right"></i></span>
                 </a>
                 <ul>
-                    <li><a href="#"><?php echo __('View all bookings')?></a></li>
-                    <li><a href="#"><?php echo __('Add new booking')?></a></li>
+                    <li><a href="<?php echo $this->baseUrl('admin/bookings'); ?>"><?php echo __('View all bookings')?></a></li>
                 </ul>
             </li>
             <li class="has_submenu nlightblue">

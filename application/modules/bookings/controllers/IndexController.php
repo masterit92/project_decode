@@ -104,12 +104,14 @@ class Bookings_IndexController extends FTeam_Controller_Action {
                 $arr_data['time'] = $time;
                 $arr_data['total_price'] = $total_price;
                 $arr_data['email'] = $email;
+                $arr_data['booking_log'] = strtotime('now');
                 $email_validate = new Zend_Validate_EmailAddress();
-                if($email_validate->isValid($email)){
-                    //send mail
-                    $send_mail = new FTeam_SendMail();
-                    $send_mail->send_mail($email, 'Booking', file_get_contents('http://decode.loc:8080/bookings/index/emailtemplate'));
+                if(!$email_validate->isValid($email)){
+                   $email = EMAIL_INFO;
                 }
+                //send mail
+                $send_mail = new FTeam_SendMail();
+                $send_mail->send_mail($email, 'Booking', file_get_contents('http://decode.loc:8080/bookings/index/emailtemplate'));
                 $arr_data['booking_status'] = 0;
                 $booking_model = new Bookings_Model_Bookings();
                 $result = $booking_model->addBooking($arr_data);

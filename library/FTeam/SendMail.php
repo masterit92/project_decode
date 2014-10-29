@@ -12,7 +12,7 @@ class FTeam_SendMail {
 		$mail = new Zend_Mail();
 		$mail->setFrom(EMAIL_INFO,'Decode');
 		$mail->addTo($email,'You');
-		$mail->addBcc(EMAIL_INFO,'Decode');
+                $mail->addBcc(EMAIL_INFO,'Decode');
 		$mail->setSubject($title);
 		$mail->setBodyHtml($html);
 		$mail->send($transport);

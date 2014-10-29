@@ -20,29 +20,27 @@ class Contact_IndexController extends FTeam_Controller_Action
         if($this->_request->isPost()) {
             $errors = array();
             $validate = new Zend_Validate_NotEmpty();
-            if(!$validate->isValid($this->_request->getParam('contacts_ten'))){
-                $errors[] = "firstname is not empty";
+            $email_vail = new Zend_Validate_EmailAddress();
+            if(!$validate->isValid($this->_request->getParam('first_name'))){
+                $errors[] = __("first name is not empty");
             }
-            if(!$validate->isValid($this->_request->getParam('contacts_email'))){
-                $errors[] = "email is not empty";
+            if(!$validate->isValid($this->_request->getParam('last_name'))){
+                $errors[] = "last name is not empty";
             }
-            if(!$validate->isValid($this->_request->getParam('contacts_tinnhan'))){
-                $errors[] = "msg is not empty";
+            if(!$validate->isValid($this->_request->getParam('email'))){
+                $errors[] = __("email is not empty");
             }
-
+            if(!$email_vail->isValid($this->_request->getParam('email'))){
+                $errors[] = __("email not format email.");
+            }
+            if(!$validate->isValid($this->_request->getParam('mesages'))){
+                $errors[] = __("mesages is not empty");
+            }
             if(count($errors) > 0) {
-                $this->view->items = $errors;
+                $this->view->error = $errors;
             } else {
-                $data = array(
-                    'contacts_ho' => $this->_request->getParam('contacts_ho'),
-                    'contacts_ten' => trim($this->_request->getParam('contacts_ten')),
-                    'contacts_diachi' => $this->_request->getParam('contacts_diachi'),
-                    'contacts_email' => $this->_request->getParam('contacts_email'),
-                    'contacts_tinnhan' => $this->_request->getParam('contacts_tinnhan'),
-                );
-                $faqModel = new Contact_Model_Test();
-                $faqModel->saveFaqs($data);
-                $this->_helper->redirector('index', 'contact');
+                $send_mail = new FTeam_SendMail();
+                
             }
 
         }

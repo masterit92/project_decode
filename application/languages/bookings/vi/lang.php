@@ -31,7 +31,7 @@ return array(
     'Total price'=>'Tổng giá',
     '*Please arrive 10 mins before you booking time'=>'*Vui lòng hãy đến phòng chơi trước 10 phút với thời gian đặt phòng.',
     'First Name'=>'Họ',
-    'Contact No'=>'Địa chỉ',
+    'Contact No'=>'SĐT',
     'Gender'=>'Giới tính',
     '-----Please select-----'=>'--Vui lòng chọn--',
     'Male'=>'Nam',
