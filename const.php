@@ -9,7 +9,7 @@ defined('APPLICATION_ENV')
     || define('APPLICATION_ENV',
               (getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV')
                                          : 'developer'));
-			  
+	 		  
 //Nap duong dan den cac thu vien se su dung trong ung dung
 set_include_path(implode(PATH_SEPARATOR, array(
     dirname(__FILE__) . '/library',
