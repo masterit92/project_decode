@@ -4,7 +4,7 @@ class Admin_Model_Bookings extends Zend_Db_Table{
     protected $_name = 'tbl_bookings';
     protected $_referent_table = 'tbl_games';
     protected $_primary = 'booking_id';
-    
+     
 //        $arr_condition_where = array(
 //            'b.booking_status'=>array(1,'='), 
 //            'b.game_id'=>array(4,'=')

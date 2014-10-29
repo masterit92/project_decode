@@ -12,6 +12,6 @@ class Admin_BookingsController extends FTeam_Controller_AdminAction{
         $row_count = $this->model_bookings->getCountRow();
         $pagination = new FTeam_Paginator();
         $this->view->pagination = $pagination->createPaginator($row_count, $this->_paginator);
-        $this->view->list_bookings = $list_bookings;
+        $this->view->list_bookings = $list_bookings; 
     }
 }

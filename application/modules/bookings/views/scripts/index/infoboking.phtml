@@ -1,7 +1,7 @@
 <div class="left col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <form  class="form-horizontal" id="booking_form" method="POST" role="form" action="<?php echo $this->baseUrl('bookings/index/addbooking') ?>">
         <?php
-        $aryData = $this->arrData;
+        $aryData = $this->arrData; 
         $price = $this->price;
         $date_format = 'd/m/Y';
         $languages = New Zend_Session_Namespace('languages');
