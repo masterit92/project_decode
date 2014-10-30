@@ -25,7 +25,7 @@ class Contact_IndexController extends FTeam_Controller_Action
                 $errors[] = __("first name is not empty");
             }
             if(!$validate->isValid($this->_request->getParam('last_name'))){
-                $errors[] = "last name is not empty";
+                $errors[] = __("last name is not empty");
             }
             if(!$validate->isValid($this->_request->getParam('email'))){
                 $errors[] = __("email is not empty");
@@ -42,7 +42,6 @@ class Contact_IndexController extends FTeam_Controller_Action
                 $send_mail = new FTeam_SendMail();
                 
             }
-
         }
     }
 }

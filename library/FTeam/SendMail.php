@@ -6,8 +6,8 @@ class FTeam_SendMail {
             try{
             $host = 'mail.decode.com.vn';
 		$config = array('auth'=>'login',
-                                'username'=>EMAIL_INFO,
-				'password'=>EMAIL_INFO_PASSWORD);
+                                'username'=>'development@decode.com.vn',
+				'password'=>'dep!@#$%^&*2014');
 		$transport = new Zend_Mail_Transport_Smtp($host,$config);
 		$mail = new Zend_Mail();
 		$mail->setFrom(EMAIL_INFO,'Decode');

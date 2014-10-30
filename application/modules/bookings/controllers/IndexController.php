@@ -115,13 +115,21 @@ class Bookings_IndexController extends FTeam_Controller_Action {
                     $email = EMAIL_INFO;
                 }
                 //view
+                $model_game = new Admin_Model_Games();
+                $game = $model_game->getSingleGame($game_id);
                 $this->_helper->layout->disableLayout();
                 $this->view->arr_data = $arr_data;
+                $this->view->game = $game;
                 $this->view->setScriptPath(APPLICATION_PATH . '/modules/bookings/views/scripts/index');
                 $html = $this->view->render('emailtemplate.phtml');
+                $dateformat = 'd/m/Y';
+                if($this->languages === 'en'){
+                    $dateformat = 'm/d/Y';
+                }
+                $title = __('booking decode date : '). date('H:i', $arr_data['time']).' '.date($dateformat, $arr_data['date'].'.');
                 //send mail
                 $send_mail = new FTeam_SendMail();
-                $send_mail->send_mail($email, 'Booking', $html);
+                $send_mail->send_mail($email, $title, $html);
                 $arr_data['booking_status'] = 0;
                 $booking_model = new Bookings_Model_Bookings();
                 $result = $booking_model->addBooking($arr_data);
