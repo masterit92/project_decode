@@ -111,7 +111,10 @@ class Bookings_IndexController extends FTeam_Controller_Action {
                 }
                 //send mail
                 $send_mail = new FTeam_SendMail();
-                $send_mail->send_mail($email, 'Booking', file_get_contents('http://decode.loc:8080/bookings/index/emailtemplate'));
+                $booking_data = new Zend_Session_Namespace('booking_data');
+                $booking_data->booking_info = $arr_data;
+                $html =file_get_contents(HTTP_BASE.'/bookings/index/emailtemplate');
+                $send_mail->send_mail($email, 'Booking', $html);
                 $arr_data['booking_status'] = 0;
                 $booking_model = new Bookings_Model_Bookings();
                 $result = $booking_model->addBooking($arr_data);
