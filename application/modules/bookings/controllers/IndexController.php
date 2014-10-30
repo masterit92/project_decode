@@ -27,9 +27,9 @@ class Bookings_IndexController extends FTeam_Controller_Action {
             if (count($game) > 0) {
                 $this->view->game = $game;
                 $this->view->list_time = $time_model->getAllTimes(1, 1, FALSE);
-                $list_wekk_date =  $this->getWeekDate();
+                $list_wekk_date = $this->getWeekDate();
                 $this->view->week_date = $list_wekk_date;
-                $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')],$id_game);
+                $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')], $id_game);
                 $this->view->class_body = 'booking-detail';
             } else {
                 $this->redirect('bookings');
@@ -38,102 +38,106 @@ class Bookings_IndexController extends FTeam_Controller_Action {
             $this->redirect('bookings');
         }
     }
-    public function weektimeAction(){
+
+    public function weektimeAction() {
         $this->_helper->layout()->disableLayout();
-        $date = $this->_request->getParam('date','now');
-        $action = $this->_request->getParam('action_event','next');
-        $game_id = $this->_request->getParam('game_id',0);
-        if(!$game_id){
-            echo 'false';exit();
+        $date = $this->_request->getParam('date', 'now');
+        $action = $this->_request->getParam('action_event', 'next');
+        $game_id = $this->_request->getParam('game_id', 0);
+        if (!$game_id) {
+            echo 'false';
+            exit();
         }
         $time_model = new Admin_Model_Times();
         $bookings_model = new Bookings_Model_Bookings();
         $this->view->list_time = $time_model->getAllTimes(1, 1, FALSE);
-        $list_wekk_date =  $this->getWeekDate($date,$action);
+        $list_wekk_date = $this->getWeekDate($date, $action);
         $this->view->week_date = $list_wekk_date;
-        $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')],$game_id);
+        $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')], $game_id);
     }
-    public function infobokingAction(){
+
+    public function infobokingAction() {
         $this->_helper->layout()->disableLayout();
-        $game_id = $this->_request->getParam('game_id',0);
-        $date = $this->_request->getParam('date_data',0);
-        $time = $this->_request->getParam('time_data',0);
-        $weekend = $this->_request->getParam('weekend',0);
-        if($time && $game_id && $date){
+        $game_id = $this->_request->getParam('game_id', 0);
+        $date = $this->_request->getParam('date_data', 0);
+        $time = $this->_request->getParam('time_data', 0);
+        $weekend = $this->_request->getParam('weekend', 0);
+        if ($time && $game_id && $date) {
             $arr_data = array(
-                'game_id'=>$game_id,
-                'date'=>$date,
-                'time'=>$time
+                'game_id' => $game_id,
+                'date' => $date,
+                'time' => $time
             );
             $price_code = 'OFF_PEAK';
-            if($weekend > 0){
+            if ($weekend > 0) {
                 $price_code = 'WEEKEND';
-            } else if(strtotime($time) < strtotime(TIME_PRICE)){
+            } else if (strtotime($time) < strtotime(TIME_PRICE)) {
                 $price_code = 'OFF_PEAK';
-            }else{
+            } else {
                 $price_code = 'EVENING';
             }
             $price_model = new Admin_Model_Prices();
             $this->view->price = $price_model->getPriceForTime($price_code);
             $this->view->arrData = $arr_data;
-        }else{
-            echo 'false';exit();
+        } else {
+            echo 'false';
+            exit();
         }
     }
-    public function addbookingAction(){
-        if($this->_request->isPost()){
+
+    public function addbookingAction() {
+        $this->_helper->layout()->disableLayout();
+        if ($this->_request->isPost()) {
             $arr_validate = array(
-                'first_name'=> new Zend_Validate_NotEmpty(),
-                'contact_no'=> new Zend_Validate_NotEmpty(),
-                'last_name'=> new Zend_Validate_NotEmpty()
+                'first_name' => new Zend_Validate_NotEmpty(),
+                'contact_no' => new Zend_Validate_NotEmpty(),
+                'last_name' => new Zend_Validate_NotEmpty()
             );
-            $gender = $this->_request->getParam('gender',-1);
-            $participants = $this->_request->getParam('participants',0);
-            $game_id = $this->_request->getParam('game_id',0);
-            $time = $this->_request->getParam('time',0);
-            $date = $this->_request->getParam('date',0);
-            $total_price = $this->_request->getParam('txt_total_price',0);
-            $email = $this->_request->getParam('email','');
+            $gender = $this->_request->getParam('gender', -1);
+            $participants = $this->_request->getParam('participants', 0);
+            $game_id = $this->_request->getParam('game_id', 0);
+            $time = $this->_request->getParam('time', 0);
+            $date = $this->_request->getParam('date', 0);
+            $total_price = $this->_request->getParam('txt_total_price', 0);
+            $email = $this->_request->getParam('email', '');
             $validate = new FTeam_Validate_MyValidate();
-            if ($validate->isValid($arr_validate) && $gender > -1 && $participants > 1 && $game_id && $time && $date && $total_price)
-            {
-                $arr_data  = $validate->getValue();
+            if ($validate->isValid($arr_validate) && $gender > -1 && $participants > 1 && $game_id && $time && $date && $total_price) {
+                $arr_data = $validate->getValue();
                 $arr_data['gender'] = $gender;
                 $arr_data['game_id'] = $game_id;
-                $arr_data['date'] = date('Y-m-d',  strtotime($date));
+                $arr_data['date'] = date('Y-m-d', strtotime($date));
                 $arr_data['time'] = $time;
                 $arr_data['total_price'] = $total_price;
                 $arr_data['email'] = $email;
                 $arr_data['booking_log'] = strtotime('now');
                 $email_validate = new Zend_Validate_EmailAddress();
-                if(!$email_validate->isValid($email)){
-                   $email = EMAIL_INFO;
+                if (!$email_validate->isValid($email)) {
+                    $email = EMAIL_INFO;
                 }
+                //view
+                $this->_helper->layout->disableLayout();
+                $this->view->arr_data = $arr_data;
+                $this->view->setScriptPath(APPLICATION_PATH . '/modules/bookings/views/scripts/index');
+                $html = $this->view->render('emailtemplate.phtml');
                 //send mail
                 $send_mail = new FTeam_SendMail();
-                $booking_data = new Zend_Session_Namespace('booking_data');
-                $booking_data->booking_info = $arr_data;
-                $html =file_get_contents(HTTP_BASE.'/bookings/index/emailtemplate');
                 $send_mail->send_mail($email, 'Booking', $html);
                 $arr_data['booking_status'] = 0;
                 $booking_model = new Bookings_Model_Bookings();
                 $result = $booking_model->addBooking($arr_data);
-                if($result){
+                if ($result) {
                     $this->_helper->FlashMessenger()->setNamespace('success')->addMessage('booking success');
-                }else{
+                } else {
                     $this->_helper->FlashMessenger()->setNamespace('fail')->addMessage('booking fail');
                 }
-            }else{
+            } else {
                 $this->_helper->FlashMessenger()->setNamespace('fail')->addMessage('booking fail');
             }
         }
         $this->redirect('bookings');
     }
-    public function emailtemplateAction(){
-        $this->_helper->layout()->disableLayout();
-    }
 
-    protected function getWeekDate($date = 'now',$action='next') {
+    protected function getWeekDate($date = 'now', $action = 'next') {
         $arr_date_key = array(
             __('Mon'),
             __('Tue'),
@@ -144,10 +148,9 @@ class Bookings_IndexController extends FTeam_Controller_Action {
             __('Sun')
         );
         $arr_date = array();
-        if($action === 'next' && $date !== 'now' ){
+        if ($action === 'next' && $date !== 'now') {
             $date.='+1 day';
-        }
-        else if($date !== 'now' && $action === 'prev'){
+        } else if ($date !== 'now' && $action === 'prev') {
             $date.='-1 day';
         }
         $ts = strtotime($date);
@@ -159,5 +162,5 @@ class Bookings_IndexController extends FTeam_Controller_Action {
         }
         return $arr_date;
     }
-    
+
 }
