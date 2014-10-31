@@ -84,4 +84,11 @@ class Admin_Model_Bookings extends Zend_Db_Table{
         $result = $this->delete("booking_id IN ('$list')");
         return $result;
     }
+    public function updateBooking($booking_id = 0, $arr_data=array()){
+        if(count($arr_data) > 0 && $booking_id > 0){
+            $result = $this->update($arr_data, "booking_id = $booking_id");
+            return $result;
+        }
+        return FALSE;
+    }
 }

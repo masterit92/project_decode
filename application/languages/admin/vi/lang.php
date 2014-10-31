@@ -161,9 +161,9 @@ return array(
     'full name'=>'Tên đầy đủ',
     'bookings'=>'Đặt phòng',
     'people'=>'Người',
-    'pending'=>'Chờ',
+    'pending'=>'Đang chờ',
     'booking'=>'Đã đặt',
-    'cancel'=>'Hủy',
+    'cancel'=>'Đã hủy',
     'Delete Booking'=>'Xóa đặt phòng',
     '--Please select--'=>'--Vui lòng chọn--',
     'contact no'=>'SĐT',
@@ -174,5 +174,6 @@ return array(
     'female'=>'Nữ',
     'update bookings'=>'Cập nhật thông tin phòng đặt',
     'recalculated'=>'Recalculated total price',
+    'updated fail!'=>'Cập nhật không thành công!',
     ''=>'',
 );

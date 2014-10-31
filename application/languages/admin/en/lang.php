@@ -154,5 +154,7 @@ return array(
     'female'=>'Female',
     'update bookings'=>'Update Bookings',
     'recalculated'=>'Tính lại tổng giá',
-    ''=>''
+    'updated fail!'=>'Updated fail! ',
+    ''=>'',
+    ''=>'',
 );

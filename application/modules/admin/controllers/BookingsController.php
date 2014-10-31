@@ -67,6 +67,25 @@ class Admin_BookingsController extends FTeam_Controller_AdminAction {
                 $model_game = new Admin_Model_Games();
                 $this->view->list_game = $model_game->getAllGames(1, 1, FALSE);
                 $this->view->booking = $booking;
+                if($this->getRequest()->isPost()){
+                    $game = $this->_request->getParam('game',0);
+                    $status = $this->_request->getParam('status',-1);
+                    $id = $this->_request->getParam('id',-1);
+                    $arr_data = array();
+                    if($game > 0){
+                        $arr_data['game_id'] = $game;
+                    }
+                    if($status > -1){
+                        $arr_data['booking_status'] = $status;
+                    }
+                    $result = $this->model_bookings->updateBooking($id,$arr_data);
+                    if($result){
+                        $this->_helper->FlashMessenger()->setNamespace('success')->addMessage('updated successfully!');
+                    }else{
+                        $this->_helper->FlashMessenger()->setNamespace('fail')->addMessage('updated fail!');
+                    }
+                    $this->redirect('admin/bookings/update/id/'.$id);
+                }
             }else{
                 $this->_helper->redirector('index', 'bookings');
             }
