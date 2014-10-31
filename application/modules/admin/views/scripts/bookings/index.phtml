@@ -1,5 +1,6 @@
 <?php
 $list_bookings = $this->list_bookings;
+$list_game = $this->list_game;
 $date_format = 'd/m/Y';
 $languages = New Zend_Session_Namespace('languages');
 if ($languages->languages === 'en') {
@@ -59,18 +60,23 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"><?php echo __('games') ?></label>
                                     <div class="col-md-3">
-                                        <select class="form-control">
-                                            <option>12</option>
-                                            <option>12</option>
-                                            <option>12</option>
+                                        <select class="form-control" name="game">
+                                            <option value="-1"><?php echo __('--Please select--')?></option>
+                                            <?php foreach ($list_game as $game):?>
+                                            <option value="<?php echo $game['game_id']?>">
+                                                <?php echo $game['game_name']?>
+                                            </option>
+                                            <?php endforeach;?>
                                         </select>
                                     </div>
                                     <label class="col-md-2 control-label"><?php echo __('participants') ?></label>
                                     <div class="col-md-3">
-                                        <select class="form-control">
-                                            <option>12</option>
-                                            <option>12</option>
-                                            <option>12</option>
+                                        <select class="form-control" name='participants'>
+                                            <option value="-1"><?php echo __('--Please select--')?></option>
+                                            <option value="2">2 <?php echo __('people')?>.</option>
+                                            <option value="3">3 <?php echo __('people')?>.</option>
+                                            <option value="4">4 <?php echo __('people')?>.</option>
+                                            <option value="5">5 <?php echo __('people')?>.</option>
                                         </select>
                                     </div>
                                 </div>
@@ -79,14 +85,14 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"><?php echo __('date booking') ?></label>
                                     <div class="col-md-3 input-append datetimepicker" >
-                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name="date_booking_start" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                     <label class="col-md-2 control-label"><?php echo __('booking log') ?></label>
                                     <div class="col-md-4 input-append datetimepicker" >
-                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name='date_log_start' data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
@@ -95,14 +101,14 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-3 input-append datetimepicker" >
-                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name="date_booking_end" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-3 input-append datetimepicker" >
-                                        <input data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name="date_log_end" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
@@ -113,18 +119,18 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"><?php echo __('time booking')?></label>
                                     <div class="col-md-3 input-append timepicker" >
-                                        <input data-format="hh:mm" class="picker" type="text" readonly="true">
+                                        <input name="time_start" data-format="hh:mm" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-time-icon="fa fa-clock-o" class="fa fa-clock-o"></i>
                                         </span>
                                     </div>
                                     <label class="col-md-2 control-label"><?php echo __('status')?></label>
                                     <div class="col-md-3" >
-                                        <select class="form-control">
-                                            <option>1</option>
-                                            <option>1</option>
-                                            <option>1</option>
-                                            <option>1</option>
+                                        <select class="form-control" name="status">
+                                            <option value="-1"><?php echo __('--Please select--')?></option>
+                                            <option value="0"><?php echo __('pending')?></option>
+                                            <option value="1"><?php echo __('booking')?></option>
+                                            <option value="2"><?php echo __('cancel')?></option>
                                         </select>
                                     </div>
                                 </div>
@@ -151,7 +157,7 @@ if ($languages->languages === 'en') {
         </div>
         <!--end search form-->
         <!--list-->
-        <form method="POST" action="">
+        <form method="POST" action="<?php echo $this->baseUrl('admin/bookings/')?>" style="margin: 0px; padding: 0px">
             <div class="row">
                 <div class="col-md-12">
                     <div class="widget wred">
@@ -230,5 +236,14 @@ if ($languages->languages === 'en') {
         </form>
     </div>
 </div>
-
-
+<script>
+$(document).ready(function (){
+    $('#checkall').change(function (){
+        if($(this).is(':checked')){
+            $('.cb_booking').prop('checked',true);
+        }else{
+            $('.cb_booking').prop('checked',false);
+        }
+    });
+});
+</script>

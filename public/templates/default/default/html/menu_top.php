@@ -10,7 +10,7 @@
                     class="icon-bar"></span>
             </button>
             <h1 class="logo">
-                <a class="navbar-brand" href="<?php echo $this->baseUrl() ?>">
+                <a class="navbar-brand" href="<?php echo $this->baseUrl('/') ?>">
                     <?php if (count($this->options_logo) > 0): ?>
                         <?php $logo = $this->options_logo ?>
                         <?php if (Check_File_Exists_Upload($logo['option_image'])): ?>
