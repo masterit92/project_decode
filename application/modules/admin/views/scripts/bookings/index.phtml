@@ -55,7 +55,7 @@ if ($languages->languages === 'en') {
                         <div class="padd">
                             <hr />
                             <!-- Form starts.  -->
-                            <form class="form-horizontal" role="form" method="POST" action="">
+                            <form class="form-horizontal" role="form" method="GET" action="<?php echo $this->baseUrl('admin/bookings/')?>">
                                 <!--game and participants-->
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"><?php echo __('games') ?></label>
@@ -63,7 +63,7 @@ if ($languages->languages === 'en') {
                                         <select class="form-control" name="game">
                                             <option value="-1"><?php echo __('--Please select--')?></option>
                                             <?php foreach ($list_game as $game):?>
-                                            <option value="<?php echo $game['game_id']?>">
+                                            <option value="<?php echo $game['game_id']?>" <?php echo $this->game == $game['game_id']?'selected':''?>>
                                                 <?php echo $game['game_name']?>
                                             </option>
                                             <?php endforeach;?>
@@ -73,10 +73,10 @@ if ($languages->languages === 'en') {
                                     <div class="col-md-3">
                                         <select class="form-control" name='participants'>
                                             <option value="-1"><?php echo __('--Please select--')?></option>
-                                            <option value="2">2 <?php echo __('people')?>.</option>
-                                            <option value="3">3 <?php echo __('people')?>.</option>
-                                            <option value="4">4 <?php echo __('people')?>.</option>
-                                            <option value="5">5 <?php echo __('people')?>.</option>
+                                            <option value="2" <?php echo $this->participants == 2?'selected':''?>>2 <?php echo __('people')?>.</option>
+                                            <option value="3" <?php echo $this->participants == 3?'selected':''?>>3 <?php echo __('people')?>.</option>
+                                            <option value="4" <?php echo $this->participants == 4?'selected':''?>>4 <?php echo __('people')?>.</option>
+                                            <option value="5" <?php echo $this->participants == 5?'selected':''?>>5 <?php echo __('people')?>.</option>
                                         </select>
                                     </div>
                                 </div>
@@ -85,14 +85,14 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"><?php echo __('date booking') ?></label>
                                     <div class="col-md-3 input-append datetimepicker" >
-                                        <input name="date_booking_start" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name="date_booking_start" data-format="dd-MM-yyyy" value="<?php echo $this->date_booking_start?>" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                     <label class="col-md-2 control-label"><?php echo __('booking log') ?></label>
                                     <div class="col-md-4 input-append datetimepicker" >
-                                        <input name='date_log_start' data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name='date_log_start' value="<?php echo $this->date_log_start?>" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
@@ -101,14 +101,14 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-3 input-append datetimepicker" >
-                                        <input name="date_booking_end" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name="date_booking_end" value="<?php echo $this->date_booking_end?>" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
                                     </div>
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-3 input-append datetimepicker" >
-                                        <input name="date_log_end" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
+                                        <input name="date_log_end" value="<?php echo $this->date_log_end?>" data-format="dd-MM-yyyy" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
                                         </span>
@@ -119,7 +119,7 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"><?php echo __('time booking')?></label>
                                     <div class="col-md-3 input-append timepicker" >
-                                        <input name="time_start" data-format="hh:mm" class="picker" type="text" readonly="true">
+                                        <input name="time_start" value="<?php echo $this->time_start?>" data-format="hh:mm" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-time-icon="fa fa-clock-o" class="fa fa-clock-o"></i>
                                         </span>
@@ -128,16 +128,16 @@ if ($languages->languages === 'en') {
                                     <div class="col-md-3" >
                                         <select class="form-control" name="status">
                                             <option value="-1"><?php echo __('--Please select--')?></option>
-                                            <option value="0"><?php echo __('pending')?></option>
-                                            <option value="1"><?php echo __('booking')?></option>
-                                            <option value="2"><?php echo __('cancel')?></option>
+                                            <option value="0" <?php echo $this->status == 0?'selected':''?>><?php echo __('pending')?></option>
+                                            <option value="1" <?php echo $this->status == 1?'selected':''?>><?php echo __('booking')?></option>
+                                            <option value="2" <?php echo $this->status == 2?'selected':''?>><?php echo __('cancel')?></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"></label>
                                     <div class="col-md-3 input-append timepicker" >
-                                        <input data-format="hh:mm" class="picker" type="text" readonly="true">
+                                        <input data-format="hh:mm" value="<?php echo $this->time_end?>" name="time_end" class="picker" type="text" readonly="true">
                                         <span class="add-on">
                                             &nbsp;<i data-time-icon="fa fa-clock-o" class="fa fa-clock-o"></i>
                                         </span>
@@ -147,6 +147,7 @@ if ($languages->languages === 'en') {
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-8">
                                         <input type="submit" class="btn btn-success" value="<?php echo __('Fillter') ?>"/>
+                                        <a href="<?php echo $this->baseUrl('admin/bookings/')?>" class="btn btn-primary"><?php echo __('Show All') ?></a>
                                     </div>
                                 </div>
                             </form>
@@ -157,7 +158,7 @@ if ($languages->languages === 'en') {
         </div>
         <!--end search form-->
         <!--list-->
-        <form method="POST" action="<?php echo $this->baseUrl('admin/bookings/')?>" style="margin: 0px; padding: 0px">
+        <form method="POST" action="<?php echo $this->baseUrl('admin/bookings/delete')?>" style="margin: 0px; padding: 0px">
             <div class="row">
                 <div class="col-md-12">
                     <div class="widget wred">
@@ -187,7 +188,7 @@ if ($languages->languages === 'en') {
                                     <?php if (count($list_bookings) > 0): ?>
                                         <?php foreach ($list_bookings as $booking): ?>
                                             <tr>
-                                                <td><input type="checkbox" name="cb_bookings[]" class="cb_booking"/></td>
+                                                <td><input type="checkbox" name="cb_bookings[]" class="cb_booking" value="<?php echo $booking['booking_id']?>"/></td>
                                                 <td><?php echo $booking['first_name'] . ' ' . $booking['last_name'] ?></td>
                                                 <td><?php echo $booking['game_name'] ?></td>
                                                 <td><?php echo $booking['participants'] ?></td>
@@ -204,7 +205,7 @@ if ($languages->languages === 'en') {
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-warning"  title="<?php echo __('edit') ?>" href="<?php echo $this->baseUrl('admin/bookings/edit/id/') . $booking['booking_id']; ?>">
+                                                    <a class="btn btn-sm btn-warning"  title="<?php echo __('edit') ?>" href="<?php echo $this->baseUrl('admin/bookings/update/id/') . $booking['booking_id']; ?>">
                                                         <i class="fa fa-pencil"></i> 
                                                     </a>
                                                 </td>
@@ -221,10 +222,13 @@ if ($languages->languages === 'en') {
                         <?php if (count($list_bookings) > 0): ?>
                             <div class="widget-foot">
                                 <button type="submit" class="btn btn-sm btn-danger"  onclick="return confirm('<?php echo __('are you sure?') ?>')">
-                                    <i class="fa fa-times"></i> <?php echo __('Delete') ?>
+                                    <i class="fa fa-times"></i> <?php echo __('Delete Booking') ?>
                                 </button>
                                 <?php
-                                $currentUrl = $this->baseUrl($this->currentController . '/index');
+                                $param_url = "/game/{$this->game}/participants/{$this->participants}/date_booking_start/{$this->date_booking_start}"
+                                . "/date_log_start/{$this->date_log_start}/date_booking_end/{$this->date_booking_end}/date_log_end/{$this->date_log_end}"
+                                . "/time_start/{$this->time_start}/status/{$this->status}/time_end/{$this->time_end}";
+                                $currentUrl = $this->baseUrl($this->currentController . '/index'.$param_url);
                                 echo $this->paginationControl($this->pagination, 'Sliding', 'pagination.phtml', array('currentUrl' => $currentUrl));
                                 ?>
                                 <div class="clearfix"></div>

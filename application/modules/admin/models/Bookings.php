@@ -54,8 +54,7 @@ class Admin_Model_Bookings extends Zend_Db_Table{
                ->joinLeft(array('g'=>$this->_referent_table), 'g.game_id = b.game_id',array('game_name'))
                ->where('b.booking_id = ?', $booking_id)
                ->setIntegrityCheck(false);
-        $result = $this->fetchAll($select);
-        echo $select;
+        $result = $this->fetchRow($select);
         if(count($result)){
             return $result->toArray();
         }
@@ -79,5 +78,10 @@ class Admin_Model_Bookings extends Zend_Db_Table{
         }
         $select->setIntegrityCheck(false);
         return $this->fetchAll($select)->count();
+    }
+    public function deleteBooking($list_bookings){
+        $list = implode(',', $list_bookings);
+        $result = $this->delete("booking_id IN ('$list')");
+        return $result;
     }
 }

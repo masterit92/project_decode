@@ -1,0 +1,175 @@
+<?php 
+    $booking = $this->booking;
+    $list_game = $this->list_game;
+?>
+<!-- Page heading -->
+<div class="page-head">
+    <!-- Page heading -->
+    <h2 class="pull-left"><?php echo __('bookings') ?>
+        <!-- page meta -->
+        <span class="page-meta"><?php echo __('update bookings') ?></span>
+    </h2>
+    <!-- Breadcrumb -->
+    <div class="bread-crumb pull-right">
+        <a href="<?php echo $this->baseUrl('admin') ?>"><i class="fa fa-home"></i><?php echo __('Home') ?></a>
+        <!-- Divider -->
+        <span class="divider">/</span> 
+        <a href="javascript:void(0)" class="bread-current"><?php echo __('bookings') ?></a>
+    </div>
+    <div class="clearfix"></div>
+    <?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        <div class="alert alert-success">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo __($msg) ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($flashMessenger->setNamespace('fail')->hasMessages()): ?>
+        <div class="alert alert-warning">
+            <?php foreach ($flashMessenger->getMessages() as $msg): ?>
+                <?php echo $msg ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif;?>
+</div> <!--/ Page heading ends -->
+<div class="matter">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget wred">
+                    <div class="widget-head">
+                        <div class="pull-left"><?php echo __('update bookings')?></div>
+                        <div class="widget-icons pull-right">
+                            <a href="<?php echo $this->baseUrl('admin/bookings/'); ?>"><?php echo __('back')?></a>
+                            <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="padd">
+                            <hr />
+                            <!-- Form starts.  -->
+                            <form class="form-horizontal" role="form" method="POST" action="<?php echo $this->baseUrl('admin/bookings/update')?>">
+                                <input type="hidden" name="id" value="<?php echo $booking['booking_id']?>"/>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('full name')?></label>
+                                    <div class="col-md-6">
+                                        <input type="text" disabled="true" class="form-control" placeholder="<?php echo __('full name')?>" name="full_name" value="<?php echo $booking['first_name'].' '.$booking['last_name'] ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('contact no')?></label>
+                                    <div class="col-md-6">
+                                        <input type="text" disabled="true" class="form-control" placeholder="<?php echo __('contact no')?>" name="contact_no" value="<?php echo $booking['contact_no'] ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('email')?></label>
+                                    <div class="col-md-6">
+                                        <input type="text" disabled="true" class="form-control" placeholder="<?php echo __('email')?>" name="email" value="<?php echo $booking['email'] ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('gender')?></label>
+                                    <div class="col-md-6">
+                                        <?php if($booking['gender'] == 1):?>
+                                            <span class="btn-warning btn"><?php echo __('male')?></span>
+                                        <?php else:?>
+                                            <span class="btn btn-primary"><?php echo __('female')?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('game')?></label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="game">
+                                            <option value="-1"><?php echo __('--Please select--')?></option>
+                                            <?php foreach ($list_game as $game):?>
+                                            <option value="<?php echo $game['game_id']?>" <?php echo $booking['game_id'] == $game['game_id']?'selected':''?>>
+                                                <?php echo $game['game_name']?>
+                                            </option>
+                                            <?php endforeach;?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('participants')?></label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name='participants'>
+                                            <option value="-1"><?php echo __('--Please select--')?></option>
+                                            <option value="2" <?php echo $booking['participants'] == 2?'selected':''?>>2 <?php echo __('people')?>.</option>
+                                            <option value="3" <?php echo $booking['participants'] == 3?'selected':''?>>3 <?php echo __('people')?>.</option>
+                                            <option value="4" <?php echo $booking['participants'] == 4?'selected':''?>>4 <?php echo __('people')?>.</option>
+                                            <option value="5" <?php echo $booking['participants'] == 5?'selected':''?>>5 <?php echo __('people')?>.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('date booking')?></label>
+                                    <div class="col-md-6 input-append datetimepicker">
+                                        <input name="date_booking" id="date_booking" data-format="dd-MM-yyyy" value="<?php echo date('d-m-Y',  strtotime($booking['date']))?>" class="picker" type="text" readonly="true">
+                                         <span class="add-on">
+                                            &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('time booking')?></label>
+                                    <div class="col-md-6 input-append timepicker">
+                                        <input name="time" value="<?php echo date('H:i',  strtotime($booking['time']))?>" data-format="hh:mm" class="picker" type="text" readonly="true">
+                                        <span class="add-on">
+                                            &nbsp;<i data-time-icon="fa fa-clock-o" class="fa fa-clock-o"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('total price')?></label>
+                                    <div class="col-md-3">
+                                        <input type="text" readonly="true" class="form-control" placeholder="<?php echo __('total price')?>" name="total_price" value="<?php echo $booking['total_price'] ?> VNĐ">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-primary" id="recalculated"><?php echo __('recalculated')?></button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('booking log')?></label>
+                                    <div class="col-md-6 input-append datetimepicker">
+                                        <input name="date_booking" data-format="dd-MM-yyyy" value="<?php echo date('d-m-Y',  strtotime($booking['booking_log']))?>" class="picker" type="text" readonly="true">
+                                         <span class="add-on">
+                                            &nbsp;<i data-date-icon="fa fa-calendar" class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label"><?php echo __('status')?></label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="status">
+                                            <option value="-1"><?php echo __('--Please select--')?></option>
+                                            <option value="0" <?php echo $booking['booking_status'] == 0?'selected':''?>><?php echo __('pending')?></option>
+                                            <option value="1" <?php echo $booking['booking_status'] == 1?'selected':''?>><?php echo __('booking')?></option>
+                                            <option value="2" <?php echo $booking['booking_status'] == 2?'selected':''?>><?php echo __('cancel')?></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-8">
+                                        <input type="submit" class="btn btn-success" value="<?php echo __('update booking')?>"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div><!--/ Matter ends -->
+<script>
+$(document).ready(function (){
+    $('#date_booking').change(function(){
+        alert('s');
+    });
+    
+});
+</script>
