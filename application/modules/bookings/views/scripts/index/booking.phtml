@@ -1,6 +1,11 @@
 <?php
 $game = $this->game;
 ?>
+<style>
+    .contact .mid-content form, .booking-detail {
+        margin-top: 0px !important;
+    }
+</style>
 <div class="mid-content">
     <h4 title="<?php echo $game['game_desc'] ?>" id="game" data_id="<?php echo $game['game_id']?>"><?php echo $game['game_name'] ?></h4>
     <p class="desc-booking-detail"><?php echo __('Please select your perferred time') ?></p>

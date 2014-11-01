@@ -27,15 +27,21 @@ $arr_date_key = array(
 </style>
 <div class="row mmb schedule-bar">
     <div class="col-xs-12 col-sm-3 col-md-2">
-        <a href="#" class="btn schedule-control prev" data="<?php echo reset($arr_week_date) ?>" data-compare="<?php echo date($date_format, strtotime(reset($arr_week_date))) ?>">
+        <?php 
+        $date_com = strtotime(reset($arr_week_date)) ;
+        if(strtotime(reset($arr_week_date)) < strtotime('now')){
+            $date_com = strtotime('now');
+        }
+        ?>
+        <a href="#" class="btn schedule-control prev" data="<?php echo reset($arr_week_date) ?>" data-compare="<?php echo date($date_format, $date_com) ?>">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-8 text-center">
-        <span class="schedule-week"><?php echo date($date_format, strtotime(reset($arr_week_date))) . ' - ' . date($date_format, strtotime(end($arr_week_date))) ?></span>
+        <span class="schedule-week"><?php echo date($date_format, strtotime(reset($arr_week_date))) . ' - ' . date('d/m/Y', strtotime(end($arr_week_date))) ?></span>
     </div>
     <div class="col-xs-12 col-sm-3 col-md-2 text-right">
-        <a href="#" class="btn schedule-control next" data="<?php echo end($arr_week_date) ?>" data-compare="<?php echo date($date_format, strtotime(end($arr_week_date))) ?>">
+        <a href="#" class="btn schedule-control next" data="<?php echo end($arr_week_date) ?>" data-compare="<?php echo date('d/m/Y', strtotime(end($arr_week_date))) ?>">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
@@ -103,6 +109,7 @@ $arr_date_key = array(
             var date = $(this).attr('data');
             load_week_booking(date, 'next',game_id);
         });
+//        alert(get_current_date());
         dsp_prev_next(get_current_date(), get_end_date_week());
         
         //boking info
@@ -129,7 +136,11 @@ $arr_date_key = array(
 
     function get_current_date() {
         var datetime = new Date();
-        var current_date = (datetime.getDate() - 1) + "/"
+        var date_now = datetime.getDate();
+        if(date_now < 10){
+            date_now = '0'+date_now;
+        }
+        var current_date = (date_now) + "/"
                 + (datetime.getMonth() + 1) + "/"
                 + datetime.getFullYear();
         return current_date;
