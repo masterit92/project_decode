@@ -1,39 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Insert title here</title>
-</head>
-<body class="the-game">
-<div style="background: #000">
-    <header style="background: url('http://decode.com.vn/public/templates/default/default/_/component/images/Decode/top/bgtop.png') no-repeat; border-bottom: 5px solid red;">
-        <div style="overflow: hidden; height: 150px; width: 1170px; margin: auto;">
-            <h1 style="float: left; margin-top: 50px;"><img src="http://decode.com.vn/public/upload/83530_201410050847.ogo.png" alt = "logo" /></h1>
-            <ul style="float: right; list-style: none; margin-top: 112px;">
-                <li style="display: inline-block;"><a href="#" style="background: red;color: #fff; padding: 10px 15px; display: block; text-decoration: none; color: #fff; font-weight: bold;">Home</a></li>
-                <li style="display: inline-block;"><a href="#" style="color: #fff; padding: 10px 15px; display: block; text-decoration: none; color: #fff; font-weight: bold;">The Game</a></li>
-                <li style="display: inline-block;"><a href="#" style="color: #fff; padding: 10px 15px; display: block; text-decoration: none; color: #fff; font-weight: bold;">Booking</a></li>
-                <li style="display: inline-block;"><a href="#" style="color: #fff; padding: 10px 15px; display: block; text-decoration: none; color: #fff; font-weight: bold;">Faq</a></li>
-                <li style="display: inline-block;"><a href="#" style="color: #fff; padding: 10px 15px; display: block; text-decoration: none; color: #fff; font-weight: bold;">Contact</a></li>
-            </ul>
-        </div><!-- .header-top -->
-
-    </header>
-    <section style="background: url('http://decode.com.vn/public/templates/default/default/_/component/images/Decode/background/bg_fire.png') no-repeat;">
-        <div style="min-height: 200px; padding: 30px 0px; width: 1170px; margin: auto;">
-            <p style="color: #fff">
-                <?php 
-                print_r($this->arr_data);
-                ?>
-            </p>
+<?php 
+$arr_data = $this->arr_data;
+$game = $this->game;
+$languages = New Zend_Session_Namespace('languages');
+$date_format = 'd/m/Y';
+if ($languages->languages === 'en') {
+    $date_format = 'm/d/Y';
+}
+?>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+        <div style="font-family:arial,sans-serif;font-size:13px">
+            <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <?php echo __('Hi guest').' '.$arr_data['first_name'].' '. $arr_data['last_name']?>,
+            </span>
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <?php echo __("We have received your booking. Please check the booking information below:")?>
+            </span>
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <b style="color:rgb(34,34,34)">
+                <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                    <?php echo __('phone')?>: <?php echo $arr_data['contact_no']?>
+                </span>
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                    <?php echo __('Room bookings')?>: <?php echo $game['game_name']?>
+                </span>
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                    <?php echo __('Date booking')?>: <?php echo date($date_format,  strtotime($arr_data['date']))?>
+                </span>
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                    <?php echo __('Time booking')?>: <?php echo date('H:i', strtotime($arr_data['time']))?>
+                </span>
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                    <?php echo __('Number of players')?>: <?php echo $arr_data['participants']. __('people')?>.
+                </span>
+                <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px"></b>
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <span style="font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <b>
+                    <font color="#d24726">
+                    <?php echo __("Our staff will soon contact you by telephone to confirm the booking 1 again.")?>&nbsp;
+                    </font>
+                </b>
+            </span>
         </div>
-    </section>
-    <footer style="background: url('http://decode.com.vn/public/templates/default/default/_/component/images/Decode/top/bgtop.png') no-repeat; height: 52px; border-top: 2px solid #fff;">
-        <div style="width: 1170px; margin: auto;">
-            <p style="color: #fff; text-align: right;">Copyright © 2014 Tue Vi Co.Ltd.  All rights reserved. </p>
+        <div style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px"><span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px"><br></span></div>
+        <div style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px">
+            <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <?php echo __("Please arrive 10 minutes earlier than now booking to your counselor about the game and the room. If you arrive late please call notice.")?>&nbsp;
+            </span>
         </div>
-    </footer>
-</div>
-</body>
+        <div style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px"><span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px"><br></span></div>
+        <div style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px">
+            <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <?php echo __("If you have any questions regarding the above information, please contact the hotel directly DECODE through this email address or tel phone number")?>&nbsp;
+                <a href="tel:%2B84%204%203978%204453" value="+84439784453" style="color:rgb(17,85,204)" target="_blank">
+                    +84 4 3978 4453
+                </a>.
+            </span>
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <br style="padding:0px;margin:0px;color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+            <span style="color:rgb(0,0,0);font-family:Menlo,Consolas,'Lucida Console','DejaVu Sans Mono',monospace;font-size:12px;line-height:15.6000003814697px">
+                <?php echo __("respectfully")?>,
+            </span>
+            <span>
+                <font color="#888888"><span><font color="#888888"><br></font></span></font></span>
+        </div>
+        <div>
+            <span style="color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px">
+                <font color="#888888"><span><font color="#888888"><br></font></span>
+                <div dir="ltr">
+                    <span><font color="#888888"><div><font size="6" color="#cc0000">DECODE Vietnam</font><br></div>
+                        <div><font color="#000000"><b>Tue Vi Ltd, Co.</b></font></div>
+                        <div><font color="#000000">Floor 8, Qunimex Building, 29 Le Dai Hanh, Ha Noi, Viet Nam</font>
+                        </div><div><font face="arial, helvetica, sans-serif" color="#000000">W:&nbsp;
+                            <a href="http://www.decode.com.vn/" style="color:rgb(17,85,204)" target="_blank">decode.com.vn&nbsp;</a>&nbsp; &nbsp;| &nbsp; &nbsp;E:&nbsp;
+                            <a href="mailto:info@decode.com.vn" style="color:rgb(17,85,204)" target="_blank">info@decode.com.vn</a>&nbsp;&nbsp; &nbsp;| &nbsp; &nbsp;P:&nbsp;
+                            <a href="tel:%2B84%204%203978%204453" value="+84439784453" style="color:rgb(17,85,204)" target="_blank">+84 4 3978 4453</a>
+                            </font></div></font></span><div><br></div><div><div>_________________________</div></div></div></font>
+            </span>
+            <div>
+                <br>Thanh Huyen Tu (Hayley)
+                <div>Tue Vi Ltd. Co, President&nbsp;</div>
+                <div>P: +44 7874666021</div><div>E: 
+                    <a href="mailto:hayley2312@hotmail.co.uk" target="_blank">hayley2312@hotmail.co.uk</a></div>
+            </div>
+        </div>
+    </body>
 </html>
+

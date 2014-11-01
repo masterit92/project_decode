@@ -11,5 +11,6 @@ return array(
     'Students/Classes' => 'Sinh viên/Lớp học',
     'Gamers' => 'Game thủ',
     'Visitors currently online: '=>'Số khách đang online: ',
-    'Total visitors: '=>'Tổng số khách truy cập: '
+    'Total visitors: '=>'Tổng số khách truy cập: ',
+    'contact success'=>'Gửi liên hệ thành công.'
 );

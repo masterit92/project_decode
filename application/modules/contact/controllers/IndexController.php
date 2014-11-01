@@ -40,7 +40,18 @@ class Contact_IndexController extends FTeam_Controller_Action
                 $this->view->error = $errors;
             } else {
                 $send_mail = new FTeam_SendMail();
-                
+                $email = $this->_request->getParam('email');
+                $last_name = $this->_request->getParam('last_name');
+                $first_name = $this->_request->getParam('first_name');
+                $mess = $this->_request->getParam('mesages');
+                $title = 'Contact';
+                $html = "Contact". date('d-m-Y',  strtotime('now')). "<br/>"
+                        . "Name: $first_name  $last_name" . '<br/>'
+                        . "SĐT: {$this->_request->getParam('phone')} <br/>"
+                        . "Messgaes: $mess" ;
+                $send_mail->send_mail($email, $title, $html);
+                $this->_helper->FlashMessenger()->setNamespace('success')->addMessage('contact success');
+                $this->redirect('/');
             }
         }
     }

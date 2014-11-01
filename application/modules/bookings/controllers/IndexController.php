@@ -108,6 +108,7 @@ class Bookings_IndexController extends FTeam_Controller_Action {
                 $arr_data['date'] = date('Y-m-d', strtotime($date));
                 $arr_data['time'] = $time;
                 $arr_data['total_price'] = $total_price;
+                $arr_data['participants'] = $participants;
                 $arr_data['email'] = $email;
                 $arr_data['booking_log'] = strtotime('now');
                 $email_validate = new Zend_Validate_EmailAddress();
@@ -126,7 +127,7 @@ class Bookings_IndexController extends FTeam_Controller_Action {
                 if($this->languages === 'en'){
                     $dateformat = 'm/d/Y';
                 }
-                $title = __('booking decode date : '). date('H:i', $arr_data['time']).' '.date($dateformat, $arr_data['date'].'.');
+                $title = __('booking decode date:'). date('H:i', strtotime($arr_data['time'])).' '.date($dateformat, strtotime($arr_data['date']).'.');
                 //send mail
                 $send_mail = new FTeam_SendMail();
                 $send_mail->send_mail($email, $title, $html);

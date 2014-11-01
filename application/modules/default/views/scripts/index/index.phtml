@@ -1,3 +1,9 @@
+<script>
+<?php $flashMessenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger'); ?>
+    <?php if ($flashMessenger->setNamespace('success')->hasMessages()): ?>
+        alert('<?php foreach ($flashMessenger->getMessages() as $msg): ?><?php echo __($msg) ?><?php endforeach; ?>');
+    <?php endif; ?>
+</script>
 <?php $home_decode = $this->options_home_decode;?>
 <?php if(count($home_decode)>0):?>
 <h3><?php echo $home_decode['option_name']?></h3>

@@ -8,5 +8,5 @@ return array(
     'Booking'=>'Booking',
     'Visitors currently online: '=>'Visitors currently online: ',
     'Total visitors: '=>'Total visitors: ',
-  
+    'contact success'=>'Send contact success'
 );

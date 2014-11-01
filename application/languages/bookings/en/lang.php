@@ -48,4 +48,18 @@ return array(
     ////
     'bookings'=>'Bookings',
     'list bookings'=>'List Bookings',
+    /////book
+    'Hi guest'=>'Hi guest',
+    'We have received your booking. Please check the booking information below:'=>'We have received your booking. Please check the booking information below:',
+    'Room bookings'=>'Room bookings',
+    'Date booking'=>'Date booking',
+    'Time booking'=>'Time booking',
+    'Number of players'=>'Number of players',
+    'people'=>'People',
+    'Our staff will soon contact you by telephone to confirm the booking 1 again.'=>'Our staff will soon contact you by telephone to confirm the booking 1 again.',
+    'Please arrive 10 minutes earlier than now booking to your counselor about the game and the room. If you arrive late please call notice.'=>'Please arrive 10 minutes earlier than now booking to your counselor about the game and the room. If you arrive late please call notice.',
+    'If you have any questions regarding the above information, please contact the hotel directly DECODE through this email address or tel phone number'=>'If you have any questions regarding the above information, please contact the hotel directly DECODE through this email address or tel phone number',
+    'respectfully'=>'Respectfully',
+    'phone'=>'Phone',
+    'booking decode date:'=>'Booking of DECODE date:'
 );

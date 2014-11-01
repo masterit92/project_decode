@@ -14,7 +14,7 @@ class FTeam_SendMail {
 		$mail->addTo($email,'You');
                 $mail->addBcc(EMAIL_INFO,'Decode');
 		$mail->setSubject($title);
-		$mail->setBodyHtml($html);
+		$mail->setBodyHtml($html,'utf-8');
 		$mail->send($transport);
             }catch(Exception $ex){
                 
