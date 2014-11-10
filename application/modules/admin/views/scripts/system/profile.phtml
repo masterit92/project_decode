@@ -1,0 +1,68 @@
+<!-- Form area -->
+<div class="admin-form">
+    <!-- Widget starts -->
+    <div class="widget worange">
+        <!-- Widget head -->
+        <div class="widget-head">
+            <i class="fa fa-lock"></i> <?php echo __('changer password') ?> 
+        </div>
+        <?php if (isset($this->messages)): ?>
+            <div class="alert alert-warning">
+                <?php if (is_array($this->messages)): ?>
+                    <?php foreach ($this->messages as $filed => $arr_mess): ?>
+                        <?php foreach ($arr_mess as $mess): ?>
+                            <span style="display: block;"> <?php echo __($mess) ?> </span>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <?php echo $this->messages ?>
+                <?php endif; ?>
+            </div>
+        <?php endif; ?>
+        <div class="widget-content">
+            <div class="padd">
+                <!-- Login form -->
+                <form class="form-horizontal" action="<?php echo $this->baseUrl('/admin/system/profile') ?>" method="post">
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="email"><?php echo __('email') ?></label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="<?php echo __('email') ?>">
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="password"><?php echo __('password') ?></label>
+                        <div class="col-lg-9">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="<?php echo __('password') ?>">
+                        </div>
+                    </div>
+                    <!-- New Password -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="new-password"><?php echo __('new-password') ?></label>
+                        <div class="col-lg-9">
+                            <input type="password" class="form-control" id="new-password" name="new_password" placeholder="<?php echo __('new-password') ?>">
+                        </div>
+                    </div>
+                     <!-- Re Password -->
+                    <div class="form-group">
+                        <label class="control-label col-lg-3" for="re-password"><?php echo __('re-password') ?></label>
+                        <div class="col-lg-9">
+                            <input type="password" class="form-control" id="re-password" name="re_password" placeholder="<?php echo __('re-password') ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-9 col-lg-offset-3">
+                            <button type="submit" class="btn btn-danger"><?php echo __('changer') ?></button>
+                            <a href="<?php echo $this->baseUrl('admin')?>" class="btn btn-default"><?php echo __('back') ?></a>
+                        </div>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!--        <div class="widget-foot">
+                    Not Registred? <a href="#">Register here</a>
+                </div>-->
+    </div>  
+</div>

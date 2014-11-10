@@ -42,11 +42,15 @@ class Admin_GamesController extends FTeam_Controller_AdminAction
 
             $arr_messages = array(
                 'game_name' => array(
-                    Zend_Validate_NotEmpty::IS_EMPTY => 'game name is not empty!'
+                    Zend_Validate_NotEmpty::IS_EMPTY => 'game name is not empty!',
+                ),
+                'deviation_time'=> array(
+                    Zend_Validate_Int::NOT_INT =>'deviation time is number int'
                 )
             );
             $arr_validate = array(
-                'game_name' => new Zend_Validate_NotEmpty()
+                'game_name' => new Zend_Validate_NotEmpty(),
+                'deviation_time'=>new Zend_Validate_Int()
             );
             $validate = new FTeam_Validate_MyValidate();
 
@@ -61,6 +65,7 @@ class Admin_GamesController extends FTeam_Controller_AdminAction
                 $game_status = $request['game_status'];
                 $game_difficult = $request['game_difficult'];
                 $game_sort = $request['game_sort'];
+                $deviation_time = $value['deviation_time'];
 
                 $game_name = $value['game_name'];
                 $singlegame = array(
@@ -69,6 +74,7 @@ class Admin_GamesController extends FTeam_Controller_AdminAction
                     'game_status' => $game_status,
                     'game_difficult' =>$game_difficult,
                     'game_order' =>$game_sort,
+                    'deviation_time'=> $deviation_time,
                     'game_lang'=>$this->languages
                 );
                 $upload = new FTeam_UploadFile();

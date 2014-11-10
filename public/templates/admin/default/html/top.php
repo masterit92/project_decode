@@ -44,7 +44,7 @@
                     </a>
                     <!-- Dropdown menu -->
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-user"></i><?php echo __('profile')?></a></li>
+                        <li><a href="<?php echo $this->baseUrl('admin/system/profile')?>"><i class="fa fa-user"></i><?php echo __('profile')?></a></li>
                         <li><a href="<?php echo $this->baseUrl('admin/settings') ?>"><i class="fa fa-cogs"></i><?php echo __('settings')?></a></li>
                         <li><a href="<?php echo $this->baseUrl('admin/system/logout') ?>"><i class="fa fa-power-off"></i><?php echo __('logout')?></a></li>
                     </ul>

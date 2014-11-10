@@ -48,9 +48,12 @@ class Bookings_IndexController extends FTeam_Controller_Action {
             echo 'false';
             exit();
         }
+        $game_model = new Admin_Model_Games();
+        $game =  $game_model->getSingleGame($game_id);
         $time_model = new Admin_Model_Times();
         $bookings_model = new Bookings_Model_Bookings();
         $this->view->list_time = $time_model->getAllTimes(1, 1, FALSE);
+        $this->view->game = $game;
         $list_wekk_date = $this->getWeekDate($date, $action);
         $this->view->week_date = $list_wekk_date;
         $this->view->list_bookings = $bookings_model->getBookingsCurentDateTime($list_wekk_date[__('Mon')], $list_wekk_date[__('Sun')], $game_id);

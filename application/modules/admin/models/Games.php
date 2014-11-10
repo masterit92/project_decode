@@ -15,10 +15,12 @@ class Admin_Model_Games extends Zend_Db_Table
         }
     }
 
-    public function getAllGames($page = 1, $status = -1, $pagination = TRUE){
+    public function getAllGames($page = 1, $status = -1, $pagination = TRUE, $lang = TRUE){
         $select = $this->select();
         $select->from($this->_name);
-        $select->where('game_lang = ?',$this->_languages);
+        if($lang){
+            $select->where('game_lang = ?',$this->_languages);
+        }
         if($status  > -1){
             $select->where('game_status = ?', $status);
         }

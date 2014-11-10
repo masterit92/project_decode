@@ -68,18 +68,6 @@
                     <li><a href="<?php echo $this->baseUrl('admin/faqs/add')?>"><?php echo __('Add new FAQ')?></a></li>
                 </ul>
             </li>
-            <li class="has_submenu nlightblue">
-                <a href="#">
-                    <!-- Menu name with icon -->
-                    <i class="fa fa-th"></i> <?php echo __('Users')?>
-                    <!-- Icon for dropdown -->
-                    <span class="pull-right"><i class="fa fa-angle-right"></i></span>
-                </a>
-                <ul>
-                    <li><a href="#"><?php echo __('View all users')?></a></li>
-                    <li><a href="#"><?php echo __('Add new user')?></a></li>
-                </ul>
-            </li>
         </ul>
         <!--/ Sidebar navigation -->
 

@@ -56,7 +56,7 @@ class Admin_BookingsController extends FTeam_Controller_AdminAction {
         $pagination = new FTeam_Paginator();
         $this->view->pagination = $pagination->createPaginator($row_count, $this->_paginator);
         $this->view->list_bookings = $list_bookings;
-        $this->view->list_game = $model_game->getAllGames(1, 1, FALSE);
+        $this->view->list_game = $model_game->getAllGames(1, 1, FALSE, FALSE);
     }
 
     public function updateAction() {
@@ -65,7 +65,7 @@ class Admin_BookingsController extends FTeam_Controller_AdminAction {
             $booking = $this->model_bookings->getSingleBokking($booking_id);
             if(count($booking) > 0){
                 $model_game = new Admin_Model_Games();
-                $this->view->list_game = $model_game->getAllGames(1, 1, FALSE);
+                $this->view->list_game = $model_game->getAllGames(1, 1, FALSE,FALSE);
                 $this->view->booking = $booking;
                 if($this->getRequest()->isPost()){
                     $game = $this->_request->getParam('game',0);
@@ -105,6 +105,37 @@ class Admin_BookingsController extends FTeam_Controller_AdminAction {
             }
         }
         $this->_helper->redirector('index', 'bookings');
+    }
+    public function excelAction(){
+//        $excel = new FTeam_Excel();
+//        $response = $this->_response;
+//        $this->_helper->layout->disableLayout();
+//        $this->_helper->viewRenderer->setNoRender();
+//        //$response->setHeader('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',true);
+//        //$response->setHeader('Content-Disposition: attachment;filename="myfile.xlsx"',true);
+//       // $response->setHeader('Cache-Control: max-age=0',true);
+//        ob_end_clean();
+//        $excel = FTeam_Excel::factory(array(
+//                    'filename' => 'test',
+//                    'creator' => 'AllUser',
+//                    'title' => 'AllUser',
+//                    'subject' => 'AllUser',
+//                    'description' => 'AllUser',
+//                    'type' => 'Excel2007',
+//                    'path'=>'C:'
+//        ));
+//        $data = array(
+//            array('ID','Name'),
+//            array(1,'Nguyen van A'),
+//            array(1,'Nguyen van A'),
+//            array(1,'Nguyen van A')
+//        );
+//        $excel->setData($data);
+//        $excel->send($response);
+//        $excel->disconnectWorksheets();
+//        unset($excel);
+        
+        
     }
 
 }

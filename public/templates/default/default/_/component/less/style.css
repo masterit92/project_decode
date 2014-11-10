@@ -12,7 +12,7 @@ body {
     color: #fff;
 }
 
-ul {
+.flag-language ul,.info ul {
     list-style: none;
 }
 

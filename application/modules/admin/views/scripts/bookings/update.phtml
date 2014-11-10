@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label"><?php echo __('game')?></label>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="game">
+                                        <select class="form-control" name="game" disabled="true">
                                             <option value="-1"><?php echo __('--Please select--')?></option>
                                             <?php foreach ($list_game as $game):?>
                                             <option value="<?php echo $game['game_id']?>" <?php echo $booking['game_id'] == $game['game_id']?'selected':''?>>
@@ -129,7 +129,7 @@
                                         <input type="text" readonly="true" class="form-control" placeholder="<?php echo __('total price')?>" name="total_price" value="<?php echo $booking['total_price'] ?> VNĐ">
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-primary" id="recalculated"><?php echo __('recalculated')?></button>
+                                        <!--<button type="button" class="btn btn-primary" id="recalculated"><?php echo __('recalculated')?></button>-->
                                     </div>
                                 </div>
                                 <div class="form-group">

@@ -5,7 +5,7 @@
         <div class="row faq-toggle faq-toggle-<?php echo $i?>" >
             <h4 class="top-title"><?php echo $item['faq_question'] ?></h4>
 
-            <p style="display: none"><?php echo $item['faq_answer']?></p>
+            <div style="display: none;font-size: 18px"><?php echo $item['faq_answer']?></div>
         </div>
         <?php $i++; endforeach;?>
         <?php endif;?>
@@ -27,14 +27,14 @@
 
     $(document).ready(function() {
         $('.faq .faq-toggle-1 h4.top-title').addClass('active');
-        $('.faq .faq-toggle-1 p').show();
+        $('.faq .faq-toggle-1 div').show();
         $('.faq h4.top-title').on('click', function() {
             $(this).next().slideToggle();
             $(this).removeClass('active').next().addClass('active');
         })
 
         $('.faq h4.bottom-title').on('click', function() {
-            $(this).next('p').slideToggle();
+            $(this).next('div').slideToggle();
             $(this).removeClass('active').prev().addClass('active');
         })
 

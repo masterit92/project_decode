@@ -7,7 +7,7 @@ $game = $this->game;
     }
 </style>
 <div class="mid-content">
-    <h4 title="<?php echo $game['game_desc'] ?>" id="game" data_id="<?php echo $game['game_id']?>"><?php echo $game['game_name'] ?></h4>
+    <h4 title="<?php echo $game['game_desc'] ?>" id="game" data_id="<?php echo $game['game_id']?>" ><?php echo $game['game_name'] ?></h4>
     <p class="desc-booking-detail"><?php echo __('Please select your perferred time') ?></p>
     <div class="schedule-container week hidden-xs" id="week_booking">
         <?php require APPLICATION_PATH . '/modules/bookings/views/scripts/index/weektime.phtml'; ?>

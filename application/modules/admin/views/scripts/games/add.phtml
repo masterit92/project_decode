@@ -123,6 +123,13 @@ $arr_image = explode('|', $game_image);
                                     <input type="text" class="form-control" id="sitename" name="game_sort" value="<?php echo $singlegame['game_order'] ?>">
                                 </div>
                             </div>
+                            <!-- g time -->
+                            <div class="form-group">
+                                <label class="control-label col-lg-2"><?php echo __('deviation time(minutes)')?></label>
+                                <div class="col-lg-7">
+                                    <input name="deviation_time" value="<?php echo $singlegame['deviation_time']?>" class="form-control" type="text">
+                                </div>
+                            </div>
                             <!-- game Status -->
                             <div class="form-group">
                                 <label class="control-label col-lg-2"><?php echo __('status')?></label>

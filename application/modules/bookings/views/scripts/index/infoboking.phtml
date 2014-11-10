@@ -13,7 +13,7 @@
             <label><?php echo __('First Name') ?>(<span style="color: red">*</span>)</label>
             <input type="text" name="first_name" placeholder="<?php echo __('First Name') ?>" required="required"/>
             <label><?php echo __('Contact No') ?>(<span style="color: red">*</span>)</label>
-            <input type="text" name="contact_no" pattern="[0][0-9]{10}" placeholder="<?php echo __('Contact No') ?>" required="required" title="<?php echo __('format phone number error')?>"/>
+            <input type="text" name="contact_no" pattern="[+0-9]{7,12}" placeholder="<?php echo __('Contact No') ?>" required="required" title="<?php echo __('format phone number error')?>"/>
             <label><?php echo __('Gender') ?>(<span style="color: red">*</span>)</label>
             <select name="gender" id="gender" required="required">
                 <option value="" selected><?php echo __('-----Please select-----') ?></option>

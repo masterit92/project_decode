@@ -1,4 +1,6 @@
 <?php
+$game = $this->game;
+$deviation_time = $game['deviation_time'];
 $list_time = $this->list_time;
 $arr_week_date = $this->week_date;
 $list_bookings = $this->list_bookings;
@@ -59,7 +61,11 @@ $arr_date_key = array(
     <tbody>
         <?php foreach ($list_time as $time): ?>
             <?php
-            $time_value = date('H:i', strtotime($time['time_value']));
+                if($deviation_time == 0){
+                    $time_value = date('H:i', strtotime($time['time_value']));
+                }else{
+                    $time_value = date('H:i', strtotime($time['time_value']."$deviation_time minutes"));
+                }
             ?>
             <tr align="center">
                 <?php for ($i = 0; $i < 7; $i++): ?>
@@ -74,7 +80,7 @@ $arr_date_key = array(
                     }
                     $exist_booking = FALSE;
                     foreach ($list_bookings as $booking) {
-                        if (strtotime($booking['time']) === strtotime($time['time_value']) && strtotime($booking['date']) == strtotime($__date)) {
+                        if (strtotime($booking['time']) === strtotime($time_value) && strtotime($booking['date']) == strtotime($__date)) {
                             $exist_booking = TRUE;
                             break;
                         }
