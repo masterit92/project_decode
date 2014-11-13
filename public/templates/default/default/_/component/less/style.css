@@ -725,11 +725,13 @@ footer .main-footer {
         max-width: 320px;
     }
 
+    .contact .contact-map {display: none}
+
 
 }
 
 /*=======================WIDTH: 768px->992px======================*/
-@media (min-width: 768px) and (max-width: 992px){
+@media screen and (min-width: 768px) and (max-width: 992px){
     header .container {
         width: 100%;
     }
@@ -787,12 +789,11 @@ footer .main-footer {
         padding-left: 20px;
     }
 
-
+    .contact .contact-map {display: none}
 }
 
 /*=======================MAX-WIDTH: 480px======================*/
-@media (max-width: 480px) {
-
+@media screen and (max-width: 480px) {
     header .header-top .navbar-default .navbar-toggle{
         margin-top: 60px;
         margin-right: 0px;
@@ -825,7 +826,7 @@ footer .main-footer {
     }
 
     .content .mid-content h3{
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .content .mid-content p  {
@@ -933,13 +934,13 @@ footer .main-footer {
     .contact .content .mid-content .right ul {
         padding-left: 0px;
     }
-
+    .contact .contact-map {display: none}
 }
 
 
 /*=======================WIDTH: 480px->768px======================*/
 
-@media (min-width: 480px) and (max-width:768px) {
+@media screen and (min-width: 480px) and (max-width:768px) {
     .content .bot-content ul {
         margin:auto;
         width: 480px;
@@ -1028,6 +1029,7 @@ footer .main-footer {
     .contact .content .mid-content {
         margin-top: 150px;
     }
+    .contact .contact-map {display: none}
 }
 
 

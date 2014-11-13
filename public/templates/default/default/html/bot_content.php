@@ -27,7 +27,7 @@
             </li>
         </ul>
     <?php elseif ($this->class_body === 'the-game'): ?>
-        <ul class="inline">
+        <ul class="inline-the-game">
             <?php
             foreach ($this->listgame as $game):
                 $game_image = $game['game_image'];
@@ -77,10 +77,31 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        jQuery('.the-game .inline').bxSlider({
-            minSlides: 4,
-            maxSlides: 4,
+        var bx = jQuery('.the-game .inline-the-game').bxSlider({
+            minSlides: typeBlock(),
+            maxSlides: typeBlock(),
             slideWidth: 280
+        });
+        function typeBlock() {
+            if(jQuery(window).outerWidth()>992){
+                return 4;
+            } else if(jQuery(window).outerWidth()<= 992 && jQuery(window).outerWidth() > 768) {
+                return 3
+            } else if(jQuery(window).outerWidth() <= 768 && jQuery(window).outerWidth() >480){
+                return 2
+            } else if(jQuery(window).outerWidth() <=480) {
+                return 1;
+            }
+        }
+        function reloadBx() {
+            bx.reloadSlider({
+                minSlides: typeBlock(),
+                maxSlides: typeBlock(),
+                slideWidth: 280
+            });
+        }
+        jQuery(window).resize(function() {
+            reloadBx();
         });
         jQuery('.item-game').each(function(){
             jQuery(this).hover(
