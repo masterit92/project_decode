@@ -48,7 +48,8 @@ $arr_date_key = array(
         </a>
     </div>
 </div>
-<table class="table table-responsive">
+<div class="table-responsive">
+<table class="table">
     <thead>
         <tr>
             <?php foreach ($arr_week_date as $key => $date_value): ?>
@@ -103,6 +104,7 @@ $arr_date_key = array(
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
 <script>
     $(document).ready(function() {
         $('.prev').click(function() {
