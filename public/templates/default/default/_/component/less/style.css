@@ -590,7 +590,7 @@ a.current_page {
 }
 
 .contact .content .mid-content .right, .booking-detail .content .mid-content .right {
-    background: url('http://localhost/test/decode/_/component/images/Decode/background/bg-item.png');
+    background: url('../images/Decode/background/bg-item.png');
     padding: 32px 18px;
     overflow: hidden;
 }
@@ -873,7 +873,7 @@ footer .main-footer {
     }
 
     .booking .bot-content .bot-booking {
-        background: url('http://localhost/test/decode/_/component/images/Decode/background/bg_price_booking.png') repeat;
+        background: url('../images/Decode/background/bg_price_booking.png') repeat;
         max-width: 490px;
         height: 100%;
         font-size: 18px;
@@ -991,7 +991,7 @@ footer .main-footer {
     }
 
     .booking .bot-content .bot-booking {
-        background: url('http://localhost/test/decode/_/component/images/Decode/background/bg_price_booking.png') repeat;
+        background: url('../images/Decode/background/bg_price_booking.png') repeat;
         max-width: 490px;
         height: 100%;
         font-size: 18px;
