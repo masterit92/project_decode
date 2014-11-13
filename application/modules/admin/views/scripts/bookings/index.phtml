@@ -146,8 +146,10 @@ if ($languages->languages === 'en') {
                                 <!--end time and status-->
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-8">
-                                        <input type="submit" class="btn btn-success" value="<?php echo __('Fillter') ?>"/>
+                                        <input type="submit" class="btn btn-success" id="btn_fillter" value="<?php echo __('Fillter') ?>"/>
                                         <a href="<?php echo $this->baseUrl('admin/bookings/')?>" class="btn btn-primary"><?php echo __('Show All') ?></a>
+                                        <input type="submit" class="btn btn-success" id="btn_excel" value="<?php echo __('excel') ?>"/>
+                                        <input type="hidden" value="0" name="excel" id="excel" />
                                     </div>
                                 </div>
                             </form>
@@ -248,6 +250,12 @@ $(document).ready(function (){
         }else{
             $('.cb_booking').prop('checked',false);
         }
+    });
+    $('#btn_excel').click(function (){
+        $('#excel').val('1');
+    });
+    $('#btn_fillter').click(function (){
+        $('#excel').val('0');
     });
 });
 </script>

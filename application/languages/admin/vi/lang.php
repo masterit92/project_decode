@@ -188,5 +188,6 @@ return array(
     'for got password'=>'Lấy lại mật khẩu.',
     'back to login.'=>'Trở lại trang đăng nhập.',
     'email not correct'=>'Email không tồn tại',
-    'send for got password success'=>'Gửi mail thành công. Vui lòng kiểm tra lại email để có mật khẩu đăng nhập.'
+    'send for got password success'=>'Gửi mail thành công. Vui lòng kiểm tra lại email để có mật khẩu đăng nhập.',
+    'excel'=>'Xuất Excel'
 );

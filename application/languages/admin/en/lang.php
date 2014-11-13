@@ -168,5 +168,6 @@ return array(
     'for got password'=>'For got password.',
     'back to login.'=>'Back to login.',
     'email not correct'=>'Email not correct',
-    'send for got password success'=>'Send to email success. Check mail... and go to login.'
+    'send for got password success'=>'Send to email success. Check mail... and go to login.',
+    'excel'=>'Excel'
 );
